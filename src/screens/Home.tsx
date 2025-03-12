@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {autoBatchEnhancer} from "@reduxjs/toolkit";
+
 
 const HomeScreen = ({navigation}) => {
   return (
