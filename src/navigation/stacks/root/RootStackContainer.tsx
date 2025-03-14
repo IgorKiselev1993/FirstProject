@@ -1,18 +1,15 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../../../screens/Home.tsx';
-import CreatePost from '../../../screens/CreatePost.tsx';
-
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {HomeScreen} from '../../../screens/Home.tsx';
+import {CreatePostScreen} from '../../../screens/CreatePost.tsx';
 
 const Stack = createNativeStackNavigator();
-
 const RootStack = () => {
-    return (
-        <Stack.Navigator initialRouteName={'Home'}>
-            <Stack.Screen name="Home" component={Home}/>
-            <Stack.Screen name="CreatePost" component={CreatePost}/>
-        </Stack.Navigator>
-    );
+  return (
+    <Stack.Navigator initialRouteName={'Home'}>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="CreatePost" component={CreatePostScreen} />
+    </Stack.Navigator>
+  );
 };
-
 export default RootStack;
