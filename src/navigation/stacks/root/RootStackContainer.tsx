@@ -6,15 +6,15 @@ import {NavigationContainer, NavigationProp} from '@react-navigation/native';
 import {Screens} from '../../config/screen.ts';
 
 export type RootStackParamsList = {
-    [Screens.home]: undefined;
-    [Screens.createPost]: undefined;
-}
+  [Screens.home]: undefined;
+  [Screens.createPost]: undefined;
+};
 export type NavigationProps = NavigationProp<RootStackParamsList>;
 const Stack = createNativeStackNavigator();
 export const RootStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={'Home'}>
+      <Stack.Navigator initialRouteName={Screens.home}>
         <Stack.Screen name={Screens.home} component={HomeScreen} />
         <Stack.Screen name={Screens.createPost} component={CreatePostScreen} />
       </Stack.Navigator>
