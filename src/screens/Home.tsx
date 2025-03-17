@@ -6,17 +6,18 @@ import {Screens} from '../navigation/config/screen.ts';
 import {NavigationProps} from '../navigation/stacks/root/RootStackContainer.tsx';
 
 const NewPostButton = () => {
-    const navigation = useNavigation<NavigationProps>();
-    return (
-        <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-                navigation.navigate(Screens.createPost);
-            }}>
-            <Text style={styles.buttonText}>New Post</Text>
-        </TouchableOpacity>
-    );
+  const navigation = useNavigation<NavigationProps>();
+  return (
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => {
+        navigation.navigate(Screens.createPost);
+      }}>
+      <Text style={styles.buttonText}>New Post</Text>
+    </TouchableOpacity>
+  );
 };
+
 export const HomeScreen = () => {
   return (
     <View style={styles.container}>
@@ -26,6 +27,7 @@ export const HomeScreen = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

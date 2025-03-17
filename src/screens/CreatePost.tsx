@@ -11,6 +11,7 @@ const ReturnButton = () => {
     </TouchableOpacity>
   );
 };
+
 export const CreatePostScreen = () => {
   return (
     <View style={styles.container}>
@@ -19,6 +20,7 @@ export const CreatePostScreen = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
