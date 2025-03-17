@@ -11,7 +11,7 @@ const ReturnButton = () => {
     </TouchableOpacity>
   );
 };
-const CreatePostScreen = () => {
+export const CreatePostScreen = () => {
   return (
     <View style={styles.container}>
       <Text>CreatePost</Text>
@@ -36,4 +36,3 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-export {CreatePostScreen};

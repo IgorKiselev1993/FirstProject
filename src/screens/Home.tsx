@@ -2,18 +2,21 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../common/colors.tsx';
 import {useNavigation} from '@react-navigation/native';
+import {Screens} from '../navigation/config/screen.ts';
 
 const NewPostButton = () => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.button}
-      onPress={() => navigation.navigate('CreatePost')}>
+      onPress={() => {
+        navigation.navigate(Screens.createPost);
+      }}>
       <Text style={styles.buttonText}>New Post</Text>
     </TouchableOpacity>
   );
 };
-const HomeScreen = () => {
+export const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text>The list of posts is currently empty.</Text>
@@ -39,4 +42,3 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-export {HomeScreen};
