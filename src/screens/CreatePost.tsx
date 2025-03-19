@@ -1,22 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {Colors} from '../common/colors.tsx';
+import {StyleSheet, Text, View} from 'react-native';
+import {BaseNavigationButton} from '../components/BaseNavigationButton.tsx';
 import {useNavigation} from '@react-navigation/native';
 
-const ReturnButton = () => {
-  const navigation = useNavigation();
-  return (
-    <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
-      <Text style={styles.buttonText}>Return</Text>
-    </TouchableOpacity>
-  );
-};
-
 export const CreatePostScreen = () => {
+    const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text>CreatePost</Text>
-      <ReturnButton />
+      <BaseNavigationButton label={'Return'} onPressHandler={() => navigation.goBack()}/>
     </View>
   );
 };
@@ -26,15 +18,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  button: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: Colors.black,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: Colors.red,
-    fontSize: 16,
   },
 });

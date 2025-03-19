@@ -1,29 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Colors} from '../common/colors.tsx';
-import {useNavigation} from '@react-navigation/native';
+import {StyleSheet, Text, View} from 'react-native';
+import {BaseNavigationButton} from '../components/BaseNavigationButton.tsx';
 import {Screens} from '../navigation/config/screen.ts';
+import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../navigation/stacks/root/RootStackContainer.tsx';
 
-const NewPostButton = () => {
-  const navigation = useNavigation<NavigationProps>();
-  return (
-    <TouchableOpacity
-      style={styles.button}
-      onPress={() => {
-        navigation.navigate(Screens.createPost);
-      }}>
-      <Text style={styles.buttonText}>New Post</Text>
-    </TouchableOpacity>
-  );
-};
 
 export const HomeScreen = () => {
-  return (
+    const navigation = useNavigation<NavigationProps>();
+    return (
     <View style={styles.container}>
       <Text>The list of posts is currently empty.</Text>
       <Text>Create a post</Text>
-      <NewPostButton />
+      <BaseNavigationButton label={'New Post'} onPressHandler={() => navigation.navigate(Screens.createPost)} />
     </View>
   );
 };
@@ -33,15 +22,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  button: {
-    marginTop: 20,
-    padding: 10,
-    borderRadius: 5,
-    backgroundColor: Colors.blue,
-  },
-  buttonText: {
-    color: Colors.green,
-    fontSize: 16,
   },
 });
