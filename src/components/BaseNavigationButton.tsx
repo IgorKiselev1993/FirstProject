@@ -18,9 +18,9 @@ export const BaseNavigationButton = (props: BaseNavButtonProps) => {
 
 const styles = StyleSheet.create({
   button: {
-    alignContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal:150,
+    position: 'absolute',
+    bottom: 10,
+    paddingHorizontal:130,
     paddingVertical: 16,
     borderRadius: 10,
     backgroundColor: Colors.blue,
@@ -28,6 +28,5 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     color: Colors.white,
-    alignSelf: 'center',
   },
 });

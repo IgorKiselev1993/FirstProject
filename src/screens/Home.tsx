@@ -9,8 +9,10 @@ export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProps>();
   return (
     <View style={styles.container}>
-      <Text>The list of posts is currently empty.</Text>
-      <Text>Create a post</Text>
+      <View style={styles.labelContainer}>
+        <Text>The list of posts is currently empty.</Text>
+        <Text>Create a post</Text>
+      </View>
       <BaseNavigationButton
         label={'New Post'}
         onPressHandler={() => navigation.navigate(Screens.createPost)}
@@ -22,7 +24,11 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  labelContainer: {
+    marginBottom: 300,
+    alignItems: 'center',
   },
 });
