@@ -9,8 +9,11 @@ export type RootStackParamsList = {
   [Screens.home]: undefined;
   [Screens.createPost]: undefined;
 };
+
 export type NavigationProps = NavigationProp<RootStackParamsList>;
+
 const Stack = createNativeStackNavigator();
+
 export const RootStack = () => {
   return (
     <NavigationContainer>

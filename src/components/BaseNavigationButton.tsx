@@ -19,13 +19,15 @@ export const BaseNavigationButton = (props: BaseNavButtonProps) => {
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
+    left: 10,
+    right: 10,
     bottom: 10,
-    paddingHorizontal:130,
     paddingVertical: 16,
     borderRadius: 10,
     backgroundColor: Colors.blue,
   },
   buttonText: {
+    textAlign: 'center',
     fontSize: 20,
     color: Colors.white,
   },
