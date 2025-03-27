@@ -9,4 +9,7 @@ export const Colors = {
   purple: '#b700ff',
   pink: '#ff00fb',
   gold: '#f3bb0a',
+  grey: '#a0a0a0',
+  silver: '#a0a0a0',
+  bluewhite: '#f2fcfc',
 };

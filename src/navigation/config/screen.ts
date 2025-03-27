@@ -1,4 +1,4 @@
 export const Screens = {
     home:'Home',
-    createPost:'CreatePost',
+    createPost:'CreateNewPost',
 } as const;

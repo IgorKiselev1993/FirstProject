@@ -1,17 +1,73 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, TextInput} from 'react-native';
 import {BaseNavigationButton} from '../components/BaseNavigationButton.tsx';
 import {useNavigation} from '@react-navigation/native';
+import {Colors} from '../common/colors.tsx';
 
 export const CreatePostScreen = () => {
   const navigation = useNavigation();
+  const [postTitle, setPostText] = useState('');
+  const [postStatus, setPostStatus] = useState('');
+  const [postDescription, setPostDescription] = useState('');
+  const [postPhoto, setPostPhoto] = useState('');
   return (
     <View style={styles.container}>
+      <View style={styles.containerFormPost}>
+        <TextInput
+          style={{
+            marginLeft: 15,
+            marginRight: 15,
+            paddingHorizontal: 20,
+            borderRadius: 5,
+            backgroundColor: Colors.bluewhite,
+          }}
+          value={postTitle}
+          onChangeText={setPostText}
+          placeholderTextColor={Colors.black}
+          placeholder={'Title'}
+        />
+        <TextInput
+          style={{
+            marginLeft: 15,
+            marginRight: 15,
+            paddingHorizontal: 20,
+            borderRadius: 5,
+            backgroundColor: Colors.bluewhite,
+          }}
+          value={postStatus}
+          onChangeText={setPostStatus}
+          placeholderTextColor={Colors.black}
+          placeholder={'Published'}
+        />
+        <TextInput
+          style={{
+            marginLeft: 15,
+            marginRight: 15,
+            paddingHorizontal: 20,
+            borderRadius: 5,
+            height: 100,
+            backgroundColor: Colors.bluewhite,
+          }}
+          textAlignVertical={'top'}
+          value={postDescription}
+          onChangeText={setPostDescription}
+          placeholderTextColor={Colors.black}
+          placeholder={'Description'}
+        />
+      </View>
+      <TextInput
+        textAlignVertical={'top'}
+        style={styles.containerImage}
+        value={postPhoto}
+        onChangeText={setPostPhoto}
+        placeholder={'Photo'}
+        editable={false}
+      />
       <View style={styles.emptyListLabelContainer}>
         <Text>CreatePost</Text>
       </View>
       <BaseNavigationButton
-        label={'Return'}
+        label={'Sumbit'}
         onPressHandler={() => navigation.goBack()}
       />
     </View>
@@ -22,9 +78,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: Colors.bluewhite,
   },
   emptyListLabelContainer: {
     marginBottom: 300,
     alignItems: 'center',
+  },
+  containerFormPost: {
+    flex: 1,
+    marginTop: 10,
+    marginBottom: 20,
+    fontSize: 15,
+    justifyContent: 'space-evenly',
+    backgroundColor: Colors.white,
+  },
+  containerImage: {
+    flex: 0.5,
+    paddingHorizontal: 20,
+    fontSize: 15,
+    backgroundColor: Colors.white,
   },
 });
