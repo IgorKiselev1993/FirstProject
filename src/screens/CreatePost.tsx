@@ -6,7 +6,7 @@ import {Colors} from '../common/colors.tsx';
 
 export const CreatePostScreen = () => {
   const navigation = useNavigation();
-  const [postTitle, setPostText] = useState('');
+  const [postTitle, setPostTitle] = useState('');
   const [postStatus, setPostStatus] = useState('');
   const [postDescription, setPostDescription] = useState('');
   const [postPhoto, setPostPhoto] = useState('');
@@ -22,9 +22,9 @@ export const CreatePostScreen = () => {
             backgroundColor: Colors.bluewhite,
           }}
           value={postTitle}
-          onChangeText={setPostText}
-          placeholderTextColor={Colors.black}
+          onChangeText={setPostTitle}
           placeholder={'Title'}
+          placeholderTextColor={Colors.black}
         />
         <TextInput
           style={{
@@ -36,8 +36,8 @@ export const CreatePostScreen = () => {
           }}
           value={postStatus}
           onChangeText={setPostStatus}
-          placeholderTextColor={Colors.black}
           placeholder={'Published'}
+          placeholderTextColor={Colors.black}
         />
         <TextInput
           style={{
@@ -51,8 +51,8 @@ export const CreatePostScreen = () => {
           textAlignVertical={'top'}
           value={postDescription}
           onChangeText={setPostDescription}
-          placeholderTextColor={Colors.black}
           placeholder={'Description'}
+          placeholderTextColor={Colors.black}
         />
       </View>
       <TextInput
@@ -61,6 +61,7 @@ export const CreatePostScreen = () => {
         value={postPhoto}
         onChangeText={setPostPhoto}
         placeholder={'Photo'}
+        placeholderTextColor={Colors.black}
         editable={false}
       />
       <View style={styles.emptyListLabelContainer}>
