@@ -30,6 +30,7 @@ export const CreatePostScreen = () => {
           style={{
             marginLeft: 15,
             marginRight: 15,
+
             paddingHorizontal: 20,
             borderRadius: 5,
             backgroundColor: Colors.bluewhite,
