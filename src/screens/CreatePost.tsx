@@ -1,73 +1,20 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View, TextInput} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 import {BaseNavigationButton} from '../components/BaseNavigationButton.tsx';
 import {useNavigation} from '@react-navigation/native';
 import {Colors} from '../common/colors.tsx';
+import {FormCreatePost} from '../components/FormCreatePost.tsx';
+
 
 export const CreatePostScreen = () => {
   const navigation = useNavigation();
-  const [postTitle, setPostTitle] = useState('');
-  const [postStatus, setPostStatus] = useState('');
-  const [postDescription, setPostDescription] = useState('');
-  const [postPhoto, setPostPhoto] = useState('');
+
   return (
     <View style={styles.container}>
-      <View style={styles.containerFormPost}>
-        <TextInput
-          style={{
-            marginLeft: 15,
-            marginRight: 15,
-            paddingHorizontal: 20,
-            borderRadius: 5,
-            backgroundColor: Colors.bluewhite,
-          }}
-          value={postTitle}
-          onChangeText={setPostTitle}
-          placeholder={'Title'}
-          placeholderTextColor={Colors.black}
-        />
-        <TextInput
-          style={{
-            marginLeft: 15,
-            marginRight: 15,
-
-            paddingHorizontal: 20,
-            borderRadius: 5,
-            backgroundColor: Colors.bluewhite,
-          }}
-          value={postStatus}
-          onChangeText={setPostStatus}
-          placeholder={'Published'}
-          placeholderTextColor={Colors.black}
-        />
-        <TextInput
-          style={{
-            marginLeft: 15,
-            marginRight: 15,
-            paddingHorizontal: 20,
-            borderRadius: 5,
-            height: 100,
-            backgroundColor: Colors.bluewhite,
-          }}
-          textAlignVertical={'top'}
-          value={postDescription}
-          onChangeText={setPostDescription}
-          placeholder={'Description'}
-          placeholderTextColor={Colors.black}
-        />
-      </View>
-      <TextInput
-        textAlignVertical={'top'}
-        style={styles.containerImage}
-        value={postPhoto}
-        onChangeText={setPostPhoto}
-        placeholder={'Photo'}
-        placeholderTextColor={Colors.black}
-        editable={false}
-      />
-      <View style={styles.emptyListLabelContainer}>
-        <Text>CreatePost</Text>
-      </View>
+      <FormCreatePost/>
+      <TouchableOpacity style={styles.buttonImage} onPress={navigation.goBack}>
+        <Text style={styles.textImage}>Photo</Text>
+      </TouchableOpacity>
       <BaseNavigationButton
         label={'Sumbit'}
         onPressHandler={() => navigation.goBack()}
@@ -82,22 +29,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.bluewhite,
   },
-  emptyListLabelContainer: {
-    marginBottom: 300,
-    alignItems: 'center',
-  },
-  containerFormPost: {
+  buttonImage: {
     flex: 1,
-    marginTop: 10,
-    marginBottom: 20,
-    fontSize: 15,
-    justifyContent: 'space-evenly',
-    backgroundColor: Colors.white,
+    justifyContent: 'flex-start',
+    width: '100%',
   },
-  containerImage: {
-    flex: 0.5,
-    paddingHorizontal: 20,
-    fontSize: 15,
-    backgroundColor: Colors.white,
+  textImage: {
+    paddingLeft: 20,
+    fontSize: 20,
+    backgroundColor: Colors.green,
   },
 });
