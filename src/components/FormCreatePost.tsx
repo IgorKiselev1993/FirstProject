@@ -7,29 +7,27 @@ export const FormCreatePost = () => {
   const [postTitle, setPostTitle] = useState('');
   const [postStatus, setPostStatus] = useState('');
   const [postDescription, setPostDescription] = useState('');
-  const formPost = [
+  const formDate = [
     {
       value: postTitle,
       onChange: setPostTitle,
       placeholder: 'Title',
-      styleExtension: [styles.styleExtension],
     },
     {
       value: postStatus,
       onChange: setPostStatus,
       placeholder: 'Published',
-      styleExtension: [styles.styleExtension],
     },
     {
       value: postDescription,
       onChange: setPostDescription,
       placeholder: 'Description',
-      styleExtension: [styles.styleExtension,styles.descriptionContainerHeight],
+      styleExtension: styles.descriptionContainerHeight,
     },
   ];
   return (
     <View style={styles.containerFormPost}>
-      {formPost.map(el => (
+      {formDate.map(el => (
         <BaseInput
           value={el.value}
           onChange={el.onChange}
@@ -48,15 +46,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     justifyContent: 'space-evenly',
     backgroundColor: Colors.white,
-  },
-  styleExtension: {
-    marginLeft: 15,
-    marginRight: 15,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    height: 70,
-    fontSize: 20,
-    backgroundColor: Colors.bluewhite,
   },
   descriptionContainerHeight: {
     height: 150,
