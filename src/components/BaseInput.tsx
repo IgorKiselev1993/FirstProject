@@ -21,6 +21,7 @@ export const BaseInput = (props: IBaseInputProps) => {
     />
   );
 };
+
 const styles = StyleSheet.create({
   containerDefaultStyle: {
     marginLeft: 15,

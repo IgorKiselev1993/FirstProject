@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Colors} from '../common/colors.tsx';
 import {BaseInput} from './BaseInput.tsx';
+import {InlineDropdown} from './InlineDropdown.tsx';
 
 export const FormCreatePost = () => {
   const [postTitle, setPostTitle] = useState('');
@@ -9,16 +10,19 @@ export const FormCreatePost = () => {
   const [postDescription, setPostDescription] = useState('');
   const formDate = [
     {
+      id: 'title',
       value: postTitle,
       onChange: setPostTitle,
       placeholder: 'Title',
     },
     {
+      id: 'status',
       value: postStatus,
       onChange: setPostStatus,
       placeholder: 'Published',
     },
     {
+      id: 'description',
       value: postDescription,
       onChange: setPostDescription,
       placeholder: 'Description',
@@ -29,6 +33,7 @@ export const FormCreatePost = () => {
     <View style={styles.containerFormPost}>
       {formDate.map(el => (
         <BaseInput
+          key={el.id}
           value={el.value}
           onChange={el.onChange}
           placeholder={el.placeholder}
@@ -38,6 +43,7 @@ export const FormCreatePost = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   containerFormPost: {
     flex: 1,

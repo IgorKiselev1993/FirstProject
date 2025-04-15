@@ -5,14 +5,13 @@ import {useNavigation} from '@react-navigation/native';
 import {Colors} from '../common/colors.tsx';
 import {FormCreatePost} from '../components/FormCreatePost.tsx';
 
-
 export const CreatePostScreen = () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <FormCreatePost/>
-      <TouchableOpacity style={styles.buttonImage} onPress={navigation.goBack}>
+      <TouchableOpacity style={styles.buttonImage}>
         <Text style={styles.textImage}>Photo</Text>
       </TouchableOpacity>
       <BaseNavigationButton

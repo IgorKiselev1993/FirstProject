@@ -17,7 +17,9 @@ const Stack = createNativeStackNavigator();
 export const RootStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={Screens.home}>
+      <Stack.Navigator
+        initialRouteName={Screens.home}
+        screenOptions={{headerTitleAlign: 'center'}}>
         <Stack.Screen name={Screens.home} component={HomeScreen} />
         <Stack.Screen name={Screens.createPost} component={CreatePostScreen} />
       </Stack.Navigator>
