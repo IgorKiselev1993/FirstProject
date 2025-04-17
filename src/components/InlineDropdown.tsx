@@ -19,9 +19,10 @@ export const InlineDropdown = ({statusList, onSelect}: InlineDropdownProps) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={toggleDropdown}>
-        <Text style={styles.buttonText}>
-          {selectedValue || 'Select an option'}{' '}
-        </Text>
+        <View style={styles.buttonContent}>
+          <Text style={styles.buttonText}>{selectedValue}</Text>
+          <Text style={styles.arrow}>{isDropdownVisible ? '▼' : '▲'}</Text>
+        </View>
       </TouchableOpacity>
       {isDropdownVisible && (
         <View style={styles.dropdown}>
@@ -32,7 +33,10 @@ export const InlineDropdown = ({statusList, onSelect}: InlineDropdownProps) => {
               <TouchableOpacity
                 style={styles.option}
                 onPress={() => handleSelect(item)}>
+                <View style={styles.optionContent}>
                 <Text style={styles.optionText}>{item}</Text>
+                {item === selectedValue && <Text style={styles.checkMark}>✓</Text>}
+                </View>
               </TouchableOpacity>
             )}
           />
@@ -44,33 +48,54 @@ export const InlineDropdown = ({statusList, onSelect}: InlineDropdownProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    marginLeft: 15,
+    marginRight: 15,
+    borderRadius: 5,
   },
   button: {
-    padding: 15,
-    backgroundColor: '#3498db',
+    height: 70,
+    backgroundColor: Colors.bluewhite,
     borderRadius: 5,
+    justifyContent: 'center',
+  },
+  buttonContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   buttonText: {
-    color: Colors.white,
-    textAlign: 'center',
+    paddingHorizontal: 20,
+    color: Colors.black,
+    fontSize: 20,
+  },
+  arrow: {
+    marginRight: 20,
   },
   dropdown: {
-    marginTop: 5,
+    alignItems: 'stretch',
     backgroundColor: Colors.white,
     borderRadius: 5,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    shadowOffset: {width: 0, height: 2},
   },
   option: {
+    alignItems: 'center',
     padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderBottomWidth: 2,
+    borderBottomColor: Colors.grey,
+  },
+  optionContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
   },
   optionText: {
-    fontSize: 16,
+    fontSize: 20,
+    color: Colors.grey,
+    fontWeight: '400',
+  },
+  checkMark: {
+    marginRight: 10,
+    fontSize: 20,
+    color: Colors.grey,
   },
 });

@@ -10,10 +10,9 @@ export const CreatePostScreen = () => {
 
   return (
     <View style={styles.container}>
-      <FormCreatePost/>
-      <TouchableOpacity style={styles.buttonImage}>
-        <Text style={styles.textImage}>Photo</Text>
-      </TouchableOpacity>
+      <FormCreatePost />
+      <Text style={styles.textImage}>Photo</Text>
+      <TouchableOpacity style={styles.buttonImage}></TouchableOpacity>
       <BaseNavigationButton
         label={'Sumbit'}
         onPressHandler={() => navigation.goBack()}
@@ -36,6 +35,5 @@ const styles = StyleSheet.create({
   textImage: {
     paddingLeft: 20,
     fontSize: 20,
-    backgroundColor: Colors.green,
   },
 });

@@ -29,17 +29,26 @@ export const FormCreatePost = () => {
       styleExtension: styles.descriptionContainerHeight,
     },
   ];
+  const statusList = ['Published', 'Draft'];
   return (
     <View style={styles.containerFormPost}>
-      {formDate.map(el => (
-        <BaseInput
-          key={el.id}
-          value={el.value}
-          onChange={el.onChange}
-          placeholder={el.placeholder}
-          styleExtension={el.styleExtension}
-        />
-      ))}
+      {formDate.map(el =>
+        el.id === 'status' ? (
+          <InlineDropdown
+            key={el.id}
+            statusList={statusList}
+            onSelect={el.onChange}
+          />
+        ) : (
+          <BaseInput
+            key={el.id}
+            value={el.value}
+            onChange={el.onChange}
+            placeholder={el.placeholder}
+            styleExtension={el.styleExtension}
+          />
+        ),
+      )}
     </View>
   );
 };

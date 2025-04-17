@@ -16,6 +16,7 @@ export const BaseInput = (props: IBaseInputProps) => {
       value={value}
       onChangeText={onChange}
       placeholder={placeholder}
+      multiline={placeholder === 'Description'}
       placeholderTextColor={Colors.black}
       style={StyleSheet.flatten([styles.containerDefaultStyle, styleExtension])}
     />
