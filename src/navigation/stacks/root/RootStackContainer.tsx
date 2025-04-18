@@ -4,6 +4,7 @@ import {HomeScreen} from '../../../screens/Home.tsx';
 import {CreatePostScreen} from '../../../screens/CreatePost.tsx';
 import {NavigationContainer, NavigationProp} from '@react-navigation/native';
 import {Screens} from '../../config/screen.ts';
+import {renderHomeHeader} from '../../../components/IconHomeScreen.tsx';
 
 export type RootStackParamsList = {
   [Screens.home]: undefined;
@@ -20,7 +21,11 @@ export const RootStack = () => {
       <Stack.Navigator
         initialRouteName={Screens.home}
         screenOptions={{headerTitleAlign: 'center'}}>
-        <Stack.Screen name={Screens.home} component={HomeScreen} />
+        <Stack.Screen
+          name={Screens.home}
+          component={HomeScreen}
+          options={{headerTitle: renderHomeHeader}}
+        />
         <Stack.Screen name={Screens.createPost} component={CreatePostScreen} />
       </Stack.Navigator>
     </NavigationContainer>
