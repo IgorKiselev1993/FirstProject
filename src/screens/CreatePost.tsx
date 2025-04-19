@@ -7,10 +7,12 @@ import {FormCreatePost} from '../components/FormCreatePost.tsx';
 import {AdditionImage} from '../components/IconAddPhoto.tsx';
 
 export const CreatePostScreen = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <FormCreatePost />
+      <View style={styles.formContainer}>
+        <FormCreatePost />
+      </View>
       <View style={styles.containerImage}>
         <Text style={styles.textImage}>Photo</Text>
         <AdditionImage onPressHandler={() => undefined} />
@@ -26,16 +28,23 @@ export const CreatePostScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     backgroundColor: Colors.bluewhite,
   },
+  formContainer: {
+    flex: 0.5,
+  },
   containerImage: {
-    height: '50%',
-    backgroundColor: Colors.red,
+    flex: 0.2,
+    justifyContent: 'flex-start',
+    backgroundColor: Colors.white,
   },
   textImage: {
+    top: 10,
     paddingLeft: 20,
-    fontSize: 20,
-    backgroundColor: Colors.green,
+    fontSize: 18,
+    marginBottom: 8,
+  },
+  buttonContainer: {
+    flex: 0.3,
   },
 });

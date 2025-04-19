@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   containerFormPost: {
     flex: 1,
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 10,
     fontSize: 20,
     justifyContent: 'space-evenly',
     backgroundColor: Colors.white,
