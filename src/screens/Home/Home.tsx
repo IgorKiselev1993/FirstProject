@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {BaseNavigationButton} from '../components/BaseNavigationButton.tsx';
-import {Screens} from '../navigation/config/screen.ts';
+import {BaseNavigationButton} from '../../components/ui/button/BaseNavigationButton.tsx';
+import {Screens} from '../../navigation/config/screen.ts';
 import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from '../navigation/stacks/root/RootStackContainer.tsx';
+import {NavigationProps} from '../../navigation/stacks/root/RootStackContainer.tsx';
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProps>();
+
   return (
     <View style={styles.container}>
       <View style={styles.labelContainer}>

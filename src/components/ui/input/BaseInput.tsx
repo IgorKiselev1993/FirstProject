@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, TextInput, ViewStyle} from 'react-native';
-import {Colors} from '../common/colors.tsx';
+import {Colors} from '../../../constant/colors.tsx';
 
 interface IBaseInputProps {
   value: string;
@@ -11,6 +11,7 @@ interface IBaseInputProps {
 
 export const BaseInput = (props: IBaseInputProps) => {
   const {value, onChange, placeholder, styleExtension} = props;
+
   return (
     <TextInput
       value={value}

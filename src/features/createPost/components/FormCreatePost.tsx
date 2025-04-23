@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Colors} from '../common/colors.tsx';
-import {BaseInput} from './BaseInput.tsx';
-import {InlineDropdown} from './InlineDropdown.tsx';
+import {Colors} from '../../../constant/colors.tsx';
+import {BaseInput} from '../../../components/ui/input/BaseInput.tsx';
+import {InlineDropdown} from '../../../components/ui/dropdown/InlineDropdown.tsx';
 
 export const FormCreatePost = () => {
   const [postTitle, setPostTitle] = useState('');
   const [postStatus, setPostStatus] = useState('');
   const [postDescription, setPostDescription] = useState('');
+
   const formDate = [
     {
       id: 'title',
@@ -29,7 +30,9 @@ export const FormCreatePost = () => {
       styleExtension: styles.descriptionContainerHeight,
     },
   ];
+
   const statusList = ['Published', 'Draft'];
+
   return (
     <View style={styles.containerFormPost}>
       {formDate.map(el =>

@@ -1,10 +1,10 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen} from '../../../screens/Home.tsx';
-import {CreatePostScreen} from '../../../screens/CreatePost.tsx';
+import {HomeScreen} from '../../../screens/Home/Home.tsx';
+import {CreatePostScreen} from '../../../features/createPost/screens/CreatePost.tsx';
 import {NavigationContainer, NavigationProp} from '@react-navigation/native';
 import {Screens} from '../../config/screen.ts';
-import {renderHomeHeader} from '../../../components/IconHomeScreen.tsx';
+import {renderHomeHeader} from '../../../components/icons/IconHomeScreen.tsx';
 
 export type RootStackParamsList = {
   [Screens.home]: undefined;

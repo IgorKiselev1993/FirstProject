@@ -1,13 +1,16 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {BaseNavigationButton} from '../components/BaseNavigationButton.tsx';
+import {BaseNavigationButton} from '../../../components/ui/button/BaseNavigationButton.tsx';
 import {useNavigation} from '@react-navigation/native';
-import {Colors} from '../common/colors.tsx';
+import {Colors} from '../../../constant/colors.tsx';
 import {FormCreatePost} from '../components/FormCreatePost.tsx';
-import {AdditionImage} from '../components/IconAddPhoto.tsx';
+import {PhotoPicker} from '../components/PhotoPicker.tsx';
 
 export const CreatePostScreen = () => {
   const navigation = useNavigation();
+
+   const [preview, setPreview] = React.useState<string | null>(null);
+
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
@@ -15,11 +18,14 @@ export const CreatePostScreen = () => {
       </View>
       <View style={styles.containerImage}>
         <Text style={styles.textImage}>Photo</Text>
-        <AdditionImage onPressHandler={() => undefined} />
+        <PhotoPicker onPick={imagePath => setPreview(imagePath)} />
       </View>
       <BaseNavigationButton
         label={'Sumbit'}
-        onPressHandler={() => navigation.goBack()}
+        onPressHandler={() => {
+          console.log('Отправка фото:', preview);
+          navigation.goBack();
+        }}
       />
     </View>
   );
@@ -43,8 +49,5 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     fontSize: 18,
     marginBottom: 8,
-  },
-  buttonContainer: {
-    flex: 0.3,
   },
 });

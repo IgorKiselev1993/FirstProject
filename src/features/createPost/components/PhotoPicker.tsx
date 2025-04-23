@@ -1,0 +1,71 @@
+import React, {useState} from 'react';
+import {View, Image, Alert, StyleSheet, TouchableOpacity} from 'react-native';
+import {PermissionsMedia} from '../../../hooks/usePremissions.ts';
+import {RemovePhotoButton} from '../../../components/ui/button/RemovePhotoButton.tsx';
+import ImagePicker from 'react-native-image-crop-picker';
+
+interface PhotoPickerProps {
+  onPick: (imagePath: string) => void;
+}
+
+export const PhotoPicker = ({onPick}: PhotoPickerProps) => {
+  const [preview, setPreview] = useState<string | null>(null);
+
+  const openOptions = async () => {
+    const hasPermission = await PermissionsMedia();
+    if (!hasPermission) {
+      Alert.alert('Ошибка', 'Нет доступа к камере или галерее');
+      return;
+    }
+
+    Alert.alert('Выбери фото', 'Загрузить с', [
+      {text: 'Камера', onPress: () => pickImage('camera')},
+      {text: 'Галерея', onPress: () => pickImage('gallery')},
+      {text: 'Отмена', style: 'cancel'},
+    ]);
+  };
+
+  const pickImage = async (source: 'camera' | 'gallery') => {
+    try {
+      const image =
+        source === 'camera'
+          ? await ImagePicker.openCamera({cropping: true, mediaType: 'photo'})
+          : await ImagePicker.openPicker({cropping: true, mediaType: 'photo'});
+      setPreview(image.path);
+      onPick(image.path);
+    } catch (err) {
+      console.warn(`Ошибка ${source}:`, err);
+    }
+  };
+
+  return (
+    <View style={styles.containerPhoto}>
+      <TouchableOpacity onPress={openOptions}>
+        {preview ? (
+          <Image source={{uri: preview}} style={styles.preview} />
+        ) : (
+          <Image
+            source={require('../../../assets/icons/IconAddPhoto.png')}
+            resizeMode="contain"
+            accessibilityLabel="Добавить фото"
+          />
+        )}
+      </TouchableOpacity>
+      {preview && <RemovePhotoButton onRemove={() => setPreview(null)} />}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  containerPhoto: {
+    position: 'absolute',
+    left: 20,
+    top: 50,
+    borderRadius: 10,
+  },
+  preview: {
+    width: 80,
+    height: 80,
+    borderRadius: 10,
+  },
+});

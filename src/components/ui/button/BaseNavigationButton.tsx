@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {Colors} from '../common/colors.tsx';
+import {Colors} from '../../../constant/colors.tsx';
 
 interface BaseNavButtonProps {
   label: string;
@@ -9,6 +9,7 @@ interface BaseNavButtonProps {
 
 export const BaseNavigationButton = (props: BaseNavButtonProps) => {
   const {label, onPressHandler} = props;
+
   return (
     <TouchableOpacity style={styles.button} onPress={onPressHandler}>
       <Text style={styles.buttonText}>{label}</Text>
