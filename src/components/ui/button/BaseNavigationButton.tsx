@@ -1,24 +1,31 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, ViewStyle} from 'react-native';
 import {Colors} from '../../../constant/colors.tsx';
 
 interface BaseNavButtonProps {
   label: string;
   onPressHandler: () => void;
+  disabled: boolean;
+  styleButton: ViewStyle;
 }
 
 export const BaseNavigationButton = (props: BaseNavButtonProps) => {
-  const {label, onPressHandler} = props;
+  const {label, onPressHandler, disabled, styleButton} = props;
 
   return (
-    <TouchableOpacity style={styles.button} onPress={onPressHandler}>
+    <TouchableOpacity
+      style={StyleSheet.flatten([
+        styles.defaultStyleButton,
+        disabled ? styleButton : styles.defaultStyleButton])}
+      onPress={onPressHandler}
+      disabled={disabled}>
       <Text style={styles.buttonText}>{label}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
+  defaultStyleButton: {
     position: 'absolute',
     left: 10,
     right: 10,

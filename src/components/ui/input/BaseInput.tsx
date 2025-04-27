@@ -4,7 +4,7 @@ import {Colors} from '../../../constant/colors.tsx';
 
 interface IBaseInputProps {
   value: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (value: string) => void;
   placeholder: string;
   styleExtension: ViewStyle | undefined;
 }

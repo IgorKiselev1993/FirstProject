@@ -12,4 +12,5 @@ export const Colors = {
   grey: '#a0a0a0',
   silver: '#a0a0a0',
   bluewhite: '#f2fcfc',
+  whitesmoke: '#f5f5f5',
 };

@@ -1,14 +1,26 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Colors} from '../../../constant/colors.tsx';
 import {BaseInput} from '../../../components/ui/input/BaseInput.tsx';
 import {InlineDropdown} from '../../../components/ui/dropdown/InlineDropdown.tsx';
 
-export const FormCreatePost = () => {
-  const [postTitle, setPostTitle] = useState('');
-  const [postStatus, setPostStatus] = useState('');
-  const [postDescription, setPostDescription] = useState('');
+interface FormCreatePostProps {
+  postTitle: string;
+  setPostTitle: (newTitle: string) => void;
+  postStatus: string;
+  setPostStatus: (newStatus: string) => void;
+  postDescription: string;
+  setPostDescription: (newDescription: string) => void;
+}
 
+export const FormCreatePost = ({
+  postTitle,
+  setPostTitle,
+  postStatus,
+  setPostStatus,
+  postDescription,
+  setPostDescription,
+}: FormCreatePostProps) => {
   const formDate = [
     {
       id: 'title',

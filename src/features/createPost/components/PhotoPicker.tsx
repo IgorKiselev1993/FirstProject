@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Image, Alert, StyleSheet, TouchableOpacity} from 'react-native';
 import {PermissionsMedia} from '../../../hooks/usePremissions.ts';
 import {RemovePhotoButton} from '../../../components/ui/button/RemovePhotoButton.tsx';
@@ -6,11 +6,12 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 interface PhotoPickerProps {
   onPick: (imagePath: string) => void;
+  onRemove: () => void;
+  preview: string | null;
+  setPreview: (imagePath: string | null) => void;
 }
 
-export const PhotoPicker = ({onPick}: PhotoPickerProps) => {
-  const [preview, setPreview] = useState<string | null>(null);
-
+export const PhotoPicker = ({onPick, onRemove, preview, setPreview}: PhotoPickerProps) => {
   const openOptions = async () => {
     const hasPermission = await PermissionsMedia();
     if (!hasPermission) {
@@ -51,7 +52,14 @@ export const PhotoPicker = ({onPick}: PhotoPickerProps) => {
           />
         )}
       </TouchableOpacity>
-      {preview && <RemovePhotoButton onRemove={() => setPreview(null)} />}
+      {preview && (
+        <RemovePhotoButton
+          onRemove={() => {
+            setPreview(null);
+            onRemove();
+          }}
+        />
+      )}
     </View>
   );
 };
