@@ -5,8 +5,8 @@ import {Colors} from '../../../constant/colors.tsx';
 interface BaseNavButtonProps {
   label: string;
   onPressHandler: () => void;
-  disabled: boolean;
-  styleButton: ViewStyle;
+  disabled?: boolean;
+  styleButton?: ViewStyle;
 }
 
 export const BaseNavigationButton = (props: BaseNavButtonProps) => {
@@ -16,7 +16,8 @@ export const BaseNavigationButton = (props: BaseNavButtonProps) => {
     <TouchableOpacity
       style={StyleSheet.flatten([
         styles.defaultStyleButton,
-        disabled ? styleButton : styles.defaultStyleButton])}
+        disabled ? styleButton : styles.defaultStyleButton,
+      ])}
       onPress={onPressHandler}
       disabled={disabled}>
       <Text style={styles.buttonText}>{label}</Text>

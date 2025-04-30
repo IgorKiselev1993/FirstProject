@@ -35,7 +35,7 @@ export const PhotoPicker = ({onPick, onRemove, preview, setPreview}: PhotoPicker
       setPreview(image.path);
       onPick(image.path);
     } catch (err) {
-      console.warn(`Ошибка ${source}:`, err);
+      Alert.alert(`Ошибка ${source}:`);
     }
   };
 

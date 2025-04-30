@@ -1,4 +1,4 @@
-import {PermissionsAndroid, Platform} from 'react-native';
+import {Alert, PermissionsAndroid, Platform} from 'react-native';
 
 export const PermissionsMedia = async (): Promise<boolean> => {
   if (Platform.OS === 'android') {
@@ -17,7 +17,7 @@ export const PermissionsMedia = async (): Promise<boolean> => {
         permission => permission === PermissionsAndroid.RESULTS.GRANTED,
       );
     } catch (err) {
-      console.warn('Ошибка разрешений:', err);
+     Alert.alert('Ошибка разрешений:');
       return false;
     }
   }
