@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, Image, Alert, StyleSheet, TouchableOpacity} from 'react-native';
 import {PermissionsMedia} from '../../../hooks/usePremissions.ts';
 import {RemovePhotoButton} from '../../../components/ui/button/RemovePhotoButton.tsx';
@@ -26,18 +26,20 @@ export const PhotoPicker = ({onPick, onRemove, preview, setPreview}: PhotoPicker
     ]);
   };
 
-  const pickImage = async (source: 'camera' | 'gallery') => {
+  const pickImage = useCallback(async(source: 'camera' | 'gallery') => {
     try {
       const image =
         source === 'camera'
           ? await ImagePicker.openCamera({cropping: true, mediaType: 'photo'})
           : await ImagePicker.openPicker({cropping: true, mediaType: 'photo'});
-      setPreview(image.path);
-      onPick(image.path);
+      if (image.path !== preview) {
+        setPreview(image.path);
+        onPick(image.path);
+      }
     } catch (err) {
       Alert.alert(`Ошибка ${source}:`);
     }
-  };
+  }, [preview, setPreview, onPick]);
 
   return (
     <View style={styles.containerPhoto}>
