@@ -11,7 +11,12 @@ interface PhotoPickerProps {
   setPreview: (imagePath: string | null) => void;
 }
 
-export const PhotoPicker = ({onPick, onRemove, preview, setPreview}: PhotoPickerProps) => {
+export const PhotoPicker = ({
+  onPick,
+  onRemove,
+  preview,
+  setPreview,
+}: PhotoPickerProps) => {
   const openOptions = async () => {
     const hasPermission = await PermissionsMedia();
     if (!hasPermission) {
@@ -26,20 +31,26 @@ export const PhotoPicker = ({onPick, onRemove, preview, setPreview}: PhotoPicker
     ]);
   };
 
-  const pickImage = useCallback(async(source: 'camera' | 'gallery') => {
-    try {
-      const image =
-        source === 'camera'
-          ? await ImagePicker.openCamera({cropping: true, mediaType: 'photo'})
-          : await ImagePicker.openPicker({cropping: true, mediaType: 'photo'});
-      if (image.path !== preview) {
-        setPreview(image.path);
-        onPick(image.path);
+  const pickImage = useCallback(
+    async (source: 'camera' | 'gallery') => {
+      try {
+        const image =
+          source === 'camera'
+            ? await ImagePicker.openCamera({cropping: true, mediaType: 'photo'})
+            : await ImagePicker.openPicker({
+                cropping: true,
+                mediaType: 'photo',
+              });
+        if (image.path !== preview) {
+          setPreview(image.path);
+          onPick(image.path);
+        }
+      } catch (err) {
+        Alert.alert(`Ошибка ${source}:`);
       }
-    } catch (err) {
-      Alert.alert(`Ошибка ${source}:`);
-    }
-  }, [preview, setPreview, onPick]);
+    },
+    [preview, setPreview, onPick],
+  );
 
   return (
     <View style={styles.containerPhoto}>

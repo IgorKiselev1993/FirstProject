@@ -15,5 +15,6 @@ const styles = StyleSheet.create({
   headerTitle: {
     width: 30,
     height: 30,
+    borderRadius: 50,
   },
 });

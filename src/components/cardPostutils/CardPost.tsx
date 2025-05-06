@@ -1,14 +1,15 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {formatDate} from './formatDate.ts';
 import {Colors} from '../../constant/colors.tsx';
 import {Post} from '../../redux/features/post/postSlice.ts';
 
 type PostCardProps = {
   item: Post;
+  onDelete: (postId: string) => void;
 };
 
-export const PostCard = ({item}: PostCardProps) => {
+export const PostCard = ({item, onDelete}: PostCardProps) => {
   return (
     <View style={styles.containerPost}>
       <View style={styles.cardPost}>
@@ -39,6 +40,11 @@ export const PostCard = ({item}: PostCardProps) => {
       <Text style={styles.description} numberOfLines={2} ellipsizeMode="tail">
         {item.description}
       </Text>
+      <TouchableOpacity
+        style={styles.deletePost}
+        onPress={() => onDelete(item.id)}>
+        <Text style={styles.labelTitle}>X</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -104,6 +110,19 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontSize: 14,
     color: Colors.black,
-    lineHeight: 25,
+    lineHeight: 20,
+  },
+  deletePost: {
+    position: 'absolute',
+    top: 2,
+    right: 5,
+    width: 20,
+    borderRadius: 50,
+    backgroundColor: Colors.red,
+  },
+  labelTitle: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: Colors.white,
   },
 });

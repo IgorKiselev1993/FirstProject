@@ -5,14 +5,19 @@ import {Screens} from '../../navigation/config/screen.ts';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationProps} from '../../navigation/stacks/root/RootStackContainer.tsx';
 import {RootState} from '../../redux/store.ts';
-import {useAppSelector} from '../../redux/hooks/reduxHooks.ts';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks/reduxHooks.ts';
 import {Colors} from '../../constant/colors.tsx';
 import {PostCard} from '../../components/cardPostutils/CardPost.tsx';
+import {deletePost} from '../../redux/features/post/postSlice.ts';
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProps>();
-
+  const dispatch = useAppDispatch();
   const posts = useAppSelector((state: RootState) => state.posts.posts);
+
+  const handleDeletePost = (postId: string) => {
+    dispatch(deletePost(postId));
+  };
 
   return (
     <View style={styles.container}>
@@ -26,7 +31,9 @@ export const HomeScreen = () => {
           contentContainerStyle={styles.listContent}
           data={posts}
           keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => <PostCard item={item} />}
+          renderItem={({item}) => (
+            <PostCard item={item} onDelete={handleDeletePost} />
+          )}
         />
       )}
       <BaseNavigationButton
@@ -49,5 +56,8 @@ const styles = StyleSheet.create({
   listContent: {
     paddingVertical: 15,
     paddingBottom: 80,
+  },
+  postContainer: {
+    marginBottom: 10,
   },
 });
