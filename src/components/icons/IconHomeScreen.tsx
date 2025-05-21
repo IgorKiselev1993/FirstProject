@@ -1,7 +1,7 @@
 import {Image, StyleSheet} from 'react-native';
 import React from 'react';
 
-export const renderHomeHeader = () => {
+export const IconHomeHeader = () => {
   return (
     <Image
       source={require('../../assets/icons/LogotipHomeScreen.png')}

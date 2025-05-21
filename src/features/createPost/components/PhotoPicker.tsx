@@ -3,6 +3,7 @@ import {View, Image, Alert, StyleSheet, TouchableOpacity} from 'react-native';
 import {PermissionsMedia} from '../../../hooks/usePremissions.ts';
 import {RemovePhotoButton} from '../../../components/ui/button/RemovePhotoButton.tsx';
 import ImagePicker from 'react-native-image-crop-picker';
+import {locales} from '../../../constant/locales.ts';
 
 interface PhotoPickerProps {
   onPick: (imagePath: string) => void;
@@ -20,14 +21,14 @@ export const PhotoPicker = ({
   const openOptions = async () => {
     const hasPermission = await PermissionsMedia();
     if (!hasPermission) {
-      Alert.alert('Ошибка', 'Нет доступа к камере или галерее');
+      Alert.alert(locales.alert.noPermissionTitle, locales.alert.noPermissionMessage);
       return;
     }
 
-    Alert.alert('Выбери фото', 'Загрузить с', [
-      {text: 'Камера', onPress: () => pickImage('camera')},
-      {text: 'Галерея', onPress: () => pickImage('gallery')},
-      {text: 'Отмена', style: 'cancel'},
+    Alert.alert(locales.alert.choosePhotoTitle, locales.alert.choosePhotoMessage, [
+      {text: locales.buttons.camera, onPress: () => pickImage('camera')},
+      {text: locales.buttons.gallery, onPress: () => pickImage('gallery')},
+      {text: locales.buttons.cancel, style: 'cancel'},
     ]);
   };
 

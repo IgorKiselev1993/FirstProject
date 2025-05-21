@@ -1,20 +1,19 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {BaseNavigationButton} from '../../../components/ui/button/BaseNavigationButton.tsx';
-import {useNavigation} from '@react-navigation/native';
-import {Colors} from '../../../constant/colors.tsx';
-import {FormCreatePost} from '../components/FormCreatePost.tsx';
-import {PhotoPicker} from '../components/PhotoPicker.tsx';
+import {BaseNavigationButton} from '../../components/ui/button/BaseNavigationButton.tsx';
+import {Colors} from '../../constant/colors.tsx';
+import {FormCreatePost} from './components/FormCreatePost.tsx';
+import {PhotoPicker} from './components/PhotoPicker.tsx';
 import {useDispatch} from 'react-redux';
-import {addPost, Post} from '../../../redux/features/post/postSlice.ts';
+import {addPost} from '../../redux/features/post/postSlice.ts';
+import {Post} from '../../types.ts';
+import {navigate} from '../../navigation/navigationServise.ts';
+import {Screens} from '../../navigation/config/screens.ts';
 
 export const CreatePostScreen = () => {
-  const navigation = useNavigation();
-
   const [postTitle, setPostTitle] = useState('');
   const [postStatus, setPostStatus] = useState('Published');
   const [postDescription, setPostDescription] = useState('');
-
   const [preview, setPreview] = useState<string | null>(null);
 
   const isFormValid =
@@ -34,9 +33,8 @@ export const CreatePostScreen = () => {
       createdAt: new Date().toISOString(),
       image: preview!,
     };
-
     dispatch(addPost(newPost));
-    navigation.goBack();
+    navigate(Screens.home);
   };
 
   return (

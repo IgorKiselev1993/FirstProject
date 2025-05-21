@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Colors} from '../../../constant/colors.tsx';
 import {BaseInput} from '../../../components/ui/input/BaseInput.tsx';
 import {InlineDropdown} from '../../../components/ui/dropdown/InlineDropdown.tsx';
+import {locales} from '../../../constant/locales.ts';
 
 interface FormCreatePostProps {
   postTitle: string;
@@ -26,24 +27,24 @@ export const FormCreatePost = ({
       id: 'title',
       value: postTitle,
       onChange: setPostTitle,
-      placeholder: 'Title',
+      placeholder: locales.placeholders.title,
     },
     {
       id: 'status',
       value: postStatus,
       onChange: setPostStatus,
-      placeholder: 'Published',
+      placeholder: locales.statusList.Pd,
     },
     {
       id: 'description',
       value: postDescription,
       onChange: setPostDescription,
-      placeholder: 'Description',
+      placeholder: locales.placeholders.description,
       styleExtension: styles.descriptionContainerHeight,
     },
   ];
 
-  const statusList = ['Published', 'Draft'];
+  const statusList = [locales.statusList.Pd, locales.statusList.Dt];
 
   return (
     <View style={styles.containerFormPost}>

@@ -2,16 +2,14 @@ import React from 'react';
 import {StyleSheet, TextInput, ViewStyle} from 'react-native';
 import {Colors} from '../../../constant/colors.tsx';
 
-interface IBaseInputProps {
+interface BaseInputProps {
   value: string;
   onChange: (value: string) => void;
   placeholder: string;
   styleExtension: ViewStyle | undefined;
 }
 
-export const BaseInput = (props: IBaseInputProps) => {
-  const {value, onChange, placeholder, styleExtension} = props;
-
+export const BaseInput = ({value, onChange, placeholder, styleExtension}: BaseInputProps) => {
   return (
     <TextInput
       value={value}

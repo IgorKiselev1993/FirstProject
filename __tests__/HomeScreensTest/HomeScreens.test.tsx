@@ -1,9 +1,9 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
-import {HomeScreen} from '../../src/screens/Home/Home.tsx';
+import {HomeScreen} from '../../src/features/home/Home.tsx';
 import {useNavigation} from '@react-navigation/native';
 import {useAppSelector, useAppDispatch} from '../../src/redux/hooks/reduxHooks.ts';
-import {Screens} from '../../src/navigation/config/screen.ts';
+import {Screens} from '../../src/navigation/config/screens.ts';
 import {deletePost} from '../../src/redux/features/post/postSlice.ts';
 
 jest.mock('@react-navigation/native', () => ({
