@@ -58,7 +58,7 @@ This is one way to run your app — you can also run it directly from within And
 
 1. Contains two screens, the first start screen (home) and the screen for creating a new post.
 
-2. Home screen, contains:
+2. HomeScreen screen, contains:
 
 - logo;
 - text;
