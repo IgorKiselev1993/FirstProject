@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {NavigationButton} from '../../component/ui/button/NavigationButton.tsx';
 
 export const HomeScreen = () => {
   return (
@@ -7,6 +8,9 @@ export const HomeScreen = () => {
       <View style={styles.introductoryText}>
         <Text style={styles.textStyle}>The list of posts is empty.</Text>
         <Text style={styles.textStyle}>Create a post</Text>
+      </View>
+      <View style={styles.buttonContainer}>
+      <NavigationButton label={'New Post'} onPress={() => {}}/>
       </View>
     </View>
   );
@@ -23,5 +27,10 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 18,
+  },
+  buttonContainer: {
+    flex: 0.5,
+    justifyContent: 'flex-end',
+    marginBottom: 30,
   },
 });
