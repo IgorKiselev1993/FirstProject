@@ -6,19 +6,19 @@ interface NavigationButtonProps {
   label: string;
   onPress: () => void;
   disabled?: boolean;
-  style?: ViewStyle;
+  styleStates?: ViewStyle;
 }
 
 export const NavigationButton = ({
   label,
   onPress,
   disabled,
-  style,
+  styleStates,
 }: NavigationButtonProps) => {
   return (
     <TouchableOpacity
       style={StyleSheet.flatten([
-        !disabled ? styles.defaultStyle : style,
+       styles.defaultStyle, disabled ? styleStates : styles.defaultStyle,
       ])}
       onPress={onPress}
       disabled={disabled}>
@@ -30,8 +30,8 @@ export const NavigationButton = ({
 const styles = StyleSheet.create({
   defaultStyle: {
     position: 'absolute',
-    left: 10,
-    right: 10,
+    left: 20,
+    right: 20,
     padding: 10,
     borderRadius: 10,
     backgroundColor: Colors.blue,
