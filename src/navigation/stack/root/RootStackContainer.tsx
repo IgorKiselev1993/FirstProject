@@ -1,10 +1,15 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer, NavigationProp} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  NavigationProp,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
 import {HomeScreen} from '../../../features/home/HomeScreen.tsx';
 import {CreatePostScreen} from '../../../features/createPost/CreatePostScreen.tsx';
 import {Screens} from '../../config/screens.ts';
-import {IconLogoHome} from '../../../component/icon/IconHomeHeader.tsx';
+import {IconLogoHome} from '../../../component/icon/IconLogoHome.tsx';
+import {useLogger} from '@react-navigation/devtools';
 
 type RootStackParamList = {
   [Screens.home]: undefined;
@@ -16,8 +21,11 @@ export type NavigationProps = NavigationProp<RootStackParamList>;
 const Stack = createNativeStackNavigator();
 
 export const RootStack = () => {
+  const navigationRef = useNavigationContainerRef<RootStackParamList>();
+  useLogger(navigationRef);
+
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         initialRouteName={Screens.home}
         screenOptions={{headerTitleAlign: 'center'}}>
