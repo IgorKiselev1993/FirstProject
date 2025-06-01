@@ -4,14 +4,14 @@ import {NavigationContainer, NavigationProp} from '@react-navigation/native';
 import {HomeScreen} from '../../../features/home/HomeScreen.tsx';
 import {CreatePostScreen} from '../../../features/createPost/CreatePostScreen.tsx';
 import {Screens} from '../../config/screens.ts';
-import {LogotipIconHome} from '../../../component/icon/IconHomeHeader.tsx';
+import {IconLogoHome} from '../../../component/icon/IconHomeHeader.tsx';
 
-export type RootStackParamList = {
+type RootStackParamList = {
   [Screens.home]: undefined;
   [Screens.createPost]: undefined;
-}
+};
 
-export type NavigationProps = NavigationProp<RootStackParamList>
+export type NavigationProps = NavigationProp<RootStackParamList>;
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +24,7 @@ export const RootStack = () => {
         <Stack.Screen
           name={Screens.home}
           component={HomeScreen}
-          options={{headerTitle: LogotipIconHome}}
+          options={{headerTitle: IconLogoHome}}
         />
         <Stack.Screen name={Screens.createPost} component={CreatePostScreen} />
       </Stack.Navigator>
