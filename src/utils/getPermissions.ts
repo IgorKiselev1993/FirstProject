@@ -22,19 +22,15 @@ export const getPermissions = () =>
           sendSms === PermissionsAndroid.RESULTS.GRANTED;
 
         if (granted) {
-          Alert.alert('Доступ разрешён');
-          console.log('You can use the camera');
+          Alert.alert('Доступ получен');
           resolve(true);
         } else {
           Alert.alert('Отказано в доступе');
-          console.log('Camera permission denied');
           resolve(false);
         }
       } catch (err) {
         Alert.alert('Ошибка');
-        console.error(err);
         reject(err);
-        return;
       }
     } else {
       resolve(true);
