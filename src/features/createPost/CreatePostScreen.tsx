@@ -1,20 +1,16 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {NavigationButton} from '../../component/ui/button/NavigationButton.tsx';
 import {useNavigation} from '@react-navigation/native';
 import {Colors} from '../../constant/colors.ts';
+import {PhotoPicker} from './component/PhotoPicker.tsx';
 
 export const CreatePostScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.containerCreatePost}>
       <View style={styles.containerDataInput}></View>
-      <View style={styles.containerPhotoPicker}>
-        <Text style={styles.textPhoto}>Photo</Text>
-        <TouchableOpacity style={styles.addPhoto}>
-          <Image source={require('../../assets/icons/AddPhoto.png')} />
-        </TouchableOpacity>
-      </View>
+      <PhotoPicker/>
       <View style={styles.containerButton}>
         <NavigationButton
           label={'Submit'}
@@ -42,22 +38,5 @@ const styles = StyleSheet.create({
   },
   containerDataInput: {
     flex: 1,
-  },
-  containerPhotoPicker: {
-    flex: 1,
-    backgroundColor: Colors.white,
-  },
-  textPhoto: {
-    margin: 20,
-    fontSize: 18,
-  },
-  addPhoto: {
-    marginHorizontal: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
-    width: 70,
-    height: 70,
-    backgroundColor: Colors.white,
   },
 });

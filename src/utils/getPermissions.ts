@@ -1,53 +1,47 @@
-import {Alert, Permission, PermissionsAndroid, Platform} from 'react-native';
+import {Platform, Permission, PermissionsAndroid} from 'react-native';
 
 export const getPermissions = () =>
   new Promise(async (resolve, reject) => {
     if (Platform.OS === 'android' && Platform.Version > 22) {
       try {
-        const camera = await requestPermission(
+        const camera = await requestPermissions(
           PermissionsAndroid.PERMISSIONS.CAMERA,
           'FirstProject App Camera Permission',
           'FirstProject App needs access to your camera ' +
             'so you can take  pictures.',
         );
+        console.log('camera');
 
-        const sendSms = await requestPermission(
-          PermissionsAndroid.PERMISSIONS.SEND_SMS,
-          'FirstProject App SEND_SMS',
-          'FirstProject App needs access to your SEND_SMS',
-        );
-
-        const granted =
-          camera === PermissionsAndroid.RESULTS.GRANTED &&
-          sendSms === PermissionsAndroid.RESULTS.GRANTED;
+        const granted = camera === PermissionsAndroid.RESULTS.GRANTED;
 
         if (granted) {
-          Alert.alert('Доступ получен');
           resolve(true);
+          console.log('granted');
         } else {
-          Alert.alert('Отказано в доступе');
           resolve(false);
+          console.log('denied');
         }
       } catch (err) {
-        Alert.alert('Ошибка');
-        reject(err);
+        if (err instanceof Error) {
+          console.log(`Ошибка: ${err.message}`);
+          reject(err);
+        } else {
+          console.log('Неизвестная ошибка');
+          reject(new Error('Unknow Error'));
+        }
       }
     } else {
       resolve(true);
     }
   });
 
-const requestPermission = async (
-  permission: Permission,
-  title: string,
-  message: string,
-) => {
-  console.info('Requesting permission for:', permission);
+const  requestPermissions = async (permission: Permission, title: string, message: string) => {
+  console.log(`Request Permissions ${permission}`);
   return await PermissionsAndroid.request(permission, {
     title,
     message,
-    buttonPositive: 'OK',
+    buttonPositive: 'Ok',
     buttonNegative: 'Cancel',
-    buttonNeutral: 'Ask Me Later',
+    buttonNeutral: 'Ask Me Never',
   });
 };

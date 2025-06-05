@@ -5,5 +5,4 @@ export  type Post = {
     created_at: string;
     status: string;
     description: string;
-
 }
