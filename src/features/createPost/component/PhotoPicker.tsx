@@ -34,7 +34,7 @@ export const PhotoPicker = () => {
               compressImageQuality: 0.8,
             }));
         if ('data' in image && image.data) {
-          setPhoto(`data:${image.mime},base64,${image.data}`);
+          setPhoto(`data:${image.mime};base64,${image.data}`);
         }
       } catch (error) {
         console.log(error);
@@ -53,7 +53,7 @@ export const PhotoPicker = () => {
       <Text style={styles.textPhoto}>Photo</Text>
       <TouchableOpacity style={styles.addPhoto} onPress={handlePick}>
         {photo ? (
-          <Image source={{uri: photo}} />
+          <Image source={{uri: photo}}  style={styles.photo}/>
         ) : (
           <Image source={require('../../../assets/icons/AddPhoto.png')} />
         )}
@@ -79,5 +79,10 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     backgroundColor: Colors.white,
+  },
+  photo: {
+    borderRadius: 5,
+    width: 70,
+    height: 70,
   },
 });

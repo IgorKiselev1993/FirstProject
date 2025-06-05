@@ -4,12 +4,13 @@ import {NavigationButton} from '../../component/ui/button/NavigationButton.tsx';
 import {useNavigation} from '@react-navigation/native';
 import {Colors} from '../../constant/colors.ts';
 import {PhotoPicker} from './component/PhotoPicker.tsx';
+import {FormInputPost} from './component/FormInputPost.tsx';
 
 export const CreatePostScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.containerCreatePost}>
-      <View style={styles.containerDataInput}></View>
+      <FormInputPost/>
       <PhotoPicker/>
       <View style={styles.containerButton}>
         <NavigationButton
@@ -35,8 +36,5 @@ const styles = StyleSheet.create({
   },
   disabledButton: {
     backgroundColor: Colors.gray,
-  },
-  containerDataInput: {
-    flex: 1,
   },
 });
