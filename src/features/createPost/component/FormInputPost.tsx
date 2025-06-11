@@ -1,52 +1,48 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, TextInput} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {Colors} from '../../../constant/colors.ts';
+import {BaseInputForm} from '../../../component/ui/input/BaseInputForm.tsx';
 
 export const FormInputPost = () => {
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('Published');
   const [description, setDescription] = useState('');
 
-  /*const dataFormInputPost = [
-    {
-      id: title,
-      value: title,
-      onChange: () => setTitle,
-      placeholder: 'Title',
-    },
-    {
-      id: status,
-      value: status,
-      onChange: () => setStatus,
-      placeholder: 'Published',
-    },
-    {
-      id: description,
-      value: description,
-      onChange: () => setDescription,
-      placeholder: 'Description',
-    },
-  ];*/
   return (
     <View style={styles.containerDataInput}>
-      <TextInput value={title} onChangeText={setTitle} placeholder={'Title'} />
-      <TextInput
-        value={status}
-        onChangeText={setStatus}
-        placeholder={'Status'}
+      <BaseInputForm
+        id={title}
+        value={title}
+        onChange={setTitle}
+        placeholder={'Title'}
       />
-      <TextInput
+      <BaseInputForm
+        id={status}
+        value={status}
+        onChange={setStatus}
+        placeholder={'Published'}
+      />
+      <BaseInputForm
+        id={description}
         value={description}
-        onChangeText={setDescription}
+        onChange={setDescription}
         placeholder={'Description'}
+        styleExtension={styles.descriptionInput}
       />
     </View>
   );
 };
 const styles = StyleSheet.create({
   containerDataInput: {
-    flex: 1,
+    flex: 0.4,
     justifyContent: 'space-around',
     alignItems: 'flex-start',
-    margin: 5,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: Colors.white,
+  },
+  descriptionInput: {
+    height: '40%',
+    textAlignVertical: 'top',
   },
 });

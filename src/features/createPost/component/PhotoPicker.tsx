@@ -64,7 +64,7 @@ export const PhotoPicker = () => {
 
 const styles = StyleSheet.create({
   containerPhotoPicker: {
-    flex: 1,
+    flex: 0.2,
     backgroundColor: Colors.white,
   },
   textPhoto: {

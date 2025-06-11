@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.whitesmoke,
   },
   containerButton: {
-    flex: 1,
+    flex: 0.4,
     justifyContent: 'flex-end',
     bottom: 30,
   },
