@@ -1,9 +1,8 @@
 import React from 'react';
-import {TextInput, ViewStyle, StyleSheet} from 'react-native';
+import {TextInput, StyleSheet, ViewStyle} from 'react-native';
 import {Colors} from '../../../constant/colors.ts';
 
 interface IBaseInputFormProps {
-  id: string;
   value: string;
   onChange: (value: string) => void;
   placeholder: string;
@@ -11,7 +10,6 @@ interface IBaseInputFormProps {
 }
 
 export const BaseInputForm = ({
-  id,
   value,
   onChange,
   placeholder,
@@ -19,12 +17,13 @@ export const BaseInputForm = ({
 }: IBaseInputFormProps) => {
   return (
     <TextInput
-      id={id}
       value={value}
       onChangeText={onChange}
       placeholder={placeholder}
       placeholderTextColor={Colors.black}
       style={StyleSheet.flatten([styles.defaultStyle, styleExtension])}
+      multiline={true}
+      numberOfLines={2}
     />
   );
 };
@@ -37,6 +36,6 @@ const styles = StyleSheet.create({
     height: '20%',
     width: '90%',
     backgroundColor: Colors.whitesmoke,
-    padding: 20,
+    padding: 10,
   },
 });
