@@ -5,16 +5,16 @@ import {usePhotoPicker} from '../../../hook/usePhotoPicker.ts';
 import {RemoveButton} from '../../../component/ui/button/RemoveButton.tsx';
 
 export const PhotoPicker = () => {
-  const {photo, pickImage, removePhoto} = usePhotoPicker();
+  const {image, pickImage, removePhoto} = usePhotoPicker();
 
   return (
     <View style={styles.containerPhotoPicker}>
       <Text style={styles.textPhoto}>Photo</Text>
       <View style={styles.photoWrap}>
-        {photo && <RemoveButton onRemove={removePhoto} />}
+        {image && <RemoveButton onRemove={removePhoto} />}
         <TouchableOpacity onPress={pickImage}>
-          {photo ? (
-            <Image source={{uri: photo}} style={styles.photo} />
+          {image ? (
+            <Image source={{uri: image}} style={styles.image} />
           ) : (
             <Image source={require('../../../assets/icons/AddPhoto.png')} />
           )}
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     height: 70,
     backgroundColor: Colors.white,
   },
-  photo: {
+  image: {
     borderRadius: 5,
     width: 70,
     height: 70,

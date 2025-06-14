@@ -20,7 +20,6 @@ export const BaseInputForm = ({
       value={value}
       onChangeText={onChange}
       placeholder={placeholder}
-      placeholderTextColor={Colors.black}
       style={StyleSheet.flatten([styles.defaultStyle, styleExtension])}
       multiline={true}
       numberOfLines={2}

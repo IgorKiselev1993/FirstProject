@@ -8,10 +8,11 @@ import {FormInputPost} from './component/FormInputPost.tsx';
 
 export const CreatePostScreen = () => {
   const navigation = useNavigation();
+
   return (
     <View style={styles.containerCreatePost}>
-      <FormInputPost/>
-      <PhotoPicker/>
+      <FormInputPost />
+      <PhotoPicker />
       <View style={styles.containerButton}>
         <NavigationButton
           label={'Submit'}

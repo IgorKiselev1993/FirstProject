@@ -17,11 +17,12 @@ export const NavigationButton = ({
 }: NavigationButtonProps) => {
   return (
     <TouchableOpacity
-      style={StyleSheet.flatten([
-       styles.defaultStyle, disabled ? styleStates : styles.defaultStyle,
-      ])}
       onPress={onPress}
-      disabled={disabled}>
+      disabled={disabled}
+      style={StyleSheet.flatten([
+        styles.defaultStyle,
+        disabled ? styleStates : styles.defaultStyle,
+      ])}>
       <Text style={styles.textButton}>{label}</Text>
     </TouchableOpacity>
   );

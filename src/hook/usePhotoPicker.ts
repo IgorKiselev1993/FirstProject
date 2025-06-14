@@ -4,7 +4,7 @@ import {Alert} from 'react-native';
 import {pickImageForm} from '../utils/pickImageForm.ts';
 
 export const usePhotoPicker = () => {
-  const [photo, setPhoto] = useState<string | null>(null);
+  const [image, setImage] = useState<string | null>(null);
 
   const pickImage = async () => {
     const hasPermission = await getPermissions();
@@ -22,13 +22,13 @@ export const usePhotoPicker = () => {
   const handlePick = async (source: 'camera' | 'gallery') => {
     const base64Image = await pickImageForm(source);
     if (base64Image) {
-      setPhoto(base64Image);
+      setImage(base64Image);
     } else {
       Alert.alert('Ошибка при выборе фото');
     }
   };
   const removePhoto = () => {
-    setPhoto(null);
+    setImage(null);
   };
-  return {photo, pickImage, removePhoto};
+  return {image, pickImage, removePhoto};
 };
