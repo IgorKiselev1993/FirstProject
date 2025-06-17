@@ -4,7 +4,7 @@ import {Colors} from '../../../constant/colors.ts';
 
 interface IBaseInputFormProps {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (text: string) => void;
   placeholder: string;
   styleExtension?: ViewStyle;
 }

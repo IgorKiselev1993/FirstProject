@@ -1,25 +1,43 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Colors} from '../../../constant/colors.ts';
 import {BaseInputForm} from '../../../component/ui/input/BaseInputForm.tsx';
-import {usePostFormInput} from '../../../hook/usePostFormInput.ts';
+import {useModalStatus} from '../../../hook/useModalStatus.ts';
 import {SelectStatus} from '../../../component/ui/modal/SelectStatus.tsx';
+import {ModalStatus} from '../../../component/ui/modal/ModalStatus.tsx';
+import {FormInputProps} from './interfaceFormInput.ts';
 
-export const FormInputPost = () => {
-  const {dataFormInputPost} = usePostFormInput();
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const openModal = () => setIsModalVisible(true);
-  //const closeModal = () => setIsModalVisible(false);
-
+export const FormInputPost = ({values, setValues}: FormInputProps) => {
+  const modal = useModalStatus();
+const dataFormInputPost =  [
+  {
+    id: 'title',
+    value: values.title,
+    onChange: setValues.setTitle,
+    placeholder: 'Title',
+  },
+  {
+    id: 'status',
+    value: values.status,
+    onChange: setValues.setStatus,
+    placeholder: 'Status',
+  },
+  {
+    id: 'description',
+    value: values.description,
+    onChange: setValues.setDescription,
+    placeholder: 'Description',
+  },
+];
   return (
     <View style={styles.containerDataInput}>
       {dataFormInputPost.map(el =>
         el.id === 'status' ? (
           <SelectStatus
             key={el.id}
-            value={el.value}
-            onPress={openModal}
-            isOpen={isModalVisible}
+            value={values.status}
+            onPress={modal.openModal}
+            isOpen={modal.isModalVisible}
           />
         ) : (
           <BaseInputForm
@@ -31,8 +49,14 @@ export const FormInputPost = () => {
               el.id === 'description' ? styles.descriptionInput : undefined
             }
           />
-        )
+        ),
       )}
+      <ModalStatus
+        visible={modal.isModalVisible}
+        onSelect={setValues.setStatus}
+        selectedValue={values.status}
+        onClose={modal.closeModal}
+      />
     </View>
   );
 };

@@ -1,12 +1,17 @@
 import React from 'react';
 import {TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
 import {Colors} from '../../../constant/colors.ts';
-import {usePhotoPicker} from '../../../hook/usePhotoPicker.ts';
 import {RemoveButton} from '../../../component/ui/button/RemoveButton.tsx';
+import {getPhotoPicker} from '../../../utils/imageUtils/getPhotoPicker.ts';
 
-export const PhotoPicker = () => {
-  const {image, pickImage, removePhoto} = usePhotoPicker();
 
+interface ImagePickerProps {
+  image: string | null;
+  setImage: (image: string | null) => void;
+}
+
+export const ImagePicker = ({image, setImage}: ImagePickerProps) => {
+const {pickImage, removePhoto} = getPhotoPicker(setImage);
   return (
     <View style={styles.containerPhotoPicker}>
       <Text style={styles.textPhoto}>Photo</Text>

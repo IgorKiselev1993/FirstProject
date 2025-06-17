@@ -1,11 +1,8 @@
-import {useState} from 'react';
-import {getPermissions} from '../utils/getPermissions.ts';
+import {getPermissions} from './getPermissions.ts';
 import {Alert} from 'react-native';
-import {pickImageForm} from '../utils/pickImageForm.ts';
+import {pickImageForm} from './pickImageForm.ts';
 
-export const usePhotoPicker = () => {
-  const [image, setImage] = useState<string | null>(null);
-
+export const getPhotoPicker = (setImage: (image: string | null) => void) => {
   const pickImage = async () => {
     const hasPermission = await getPermissions();
     if (!hasPermission) {
@@ -23,12 +20,16 @@ export const usePhotoPicker = () => {
     const base64Image = await pickImageForm(source);
     if (base64Image) {
       setImage(base64Image);
+      console.log('Изображение добавленно');
     } else {
-      Alert.alert('Ошибка при выборе фото');
+      Alert.alert('Ошибка при выборе изображения');
     }
   };
+
   const removePhoto = () => {
     setImage(null);
+    console.log('Изображение удалено');
   };
-  return {image, pickImage, removePhoto};
+
+  return {pickImage, removePhoto};
 };

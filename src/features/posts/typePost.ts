@@ -1,6 +1,6 @@
 export  type Post = {
     id: string;
-    photo: string;
+    image: string;
     title: string;
     created_at: string;
     status: string;
