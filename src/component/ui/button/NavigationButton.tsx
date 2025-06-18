@@ -31,6 +31,8 @@ export const NavigationButton = ({
 const styles = StyleSheet.create({
   defaultStyle: {
     position: 'absolute',
+    justifyContent: 'flex-end',
+    bottom: 30,
     left: 20,
     right: 20,
     padding: 10,

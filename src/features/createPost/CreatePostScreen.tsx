@@ -6,15 +6,31 @@ import {Colors} from '../../constant/colors.ts';
 import {ImagePicker} from './component/ImagePicker.tsx';
 import {FormInputPost} from './component/FormInputPost.tsx';
 import {useForm} from '../../hook/useForm.ts';
+import {Post} from '../posts/typePost.ts';
+import {useAppDispatch} from '../../hook/hooksStore.ts';
+import {addPost} from '../posts/postSlice.ts';
+import {defaultImageUrl} from '../../constant/defaultImageUrl.ts';
 
 export const CreatePostScreen = () => {
   const navigation = useNavigation();
   const {values, setValues, image, setImage, isFormValid} = useForm();
-  console.log('title:', values.title);
-  console.log('status:', values.status);
-  console.log('description:', values.description);
-  console.log('image:', image);
-  console.log('isFormValid:', isFormValid);
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = () => {
+    if (isFormValid) {
+     const newPost: Post = {
+       id: Date.now().toString(),
+       created_at: new Date().toISOString(),
+       image: image ?? defaultImageUrl,
+       title: values.title,
+       status: values.status,
+       description: values.description,
+     };
+     dispatch(addPost(newPost));
+     navigation.goBack();
+    }
+  };
+
   return (
     <View style={styles.containerCreatePost}>
       <FormInputPost values={values} setValues={setValues} />
@@ -23,7 +39,7 @@ export const CreatePostScreen = () => {
         <NavigationButton
           label={'Submit'}
           disabled={!isFormValid}
-          onPress={() => navigation.goBack()}
+          onPress={handleSubmit}
           styleStates={styles.disabledButton}
         />
       </View>
@@ -38,8 +54,6 @@ const styles = StyleSheet.create({
   },
   containerButton: {
     flex: 0.4,
-    justifyContent: 'flex-end',
-    bottom: 30,
   },
   disabledButton: {
     backgroundColor: Colors.gray,

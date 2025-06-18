@@ -11,25 +11,27 @@ export const ModalStatus = ({
   onSelect,
 }: IModalStatusProps) => {
   return (
-    <Modal visible={visible} transparent={true} animationType={'slide'}>
+    <Modal
+      visible={visible}
+      transparent={true}
+      animationType={'slide'}
+      onRequestClose={onClose}>
       <View style={styles.overlayContainer}>
         <View style={styles.modalContainer}>
-            {statusList.map(status => (
-              <TouchableOpacity
-                key={status}
-                onPress={() => {
-                  onSelect(status);
-                  onClose();
-                }}
-                style={styles.statusListItem}>
-                <Text style={styles.statusText}>{status}</Text>
-                <Text>{status === selectedValue && '✔'}</Text>
-              </TouchableOpacity>
-            ))}
+          {statusList.map(status => (
+            <TouchableOpacity
+              key={status}
+              onPress={() => {
+                onSelect(status);
+                onClose();
+              }}
+              style={styles.statusListItem}>
+              <Text style={styles.statusText}>{status}</Text>
+              <Text>{status === selectedValue && '✔'}</Text>
+            </TouchableOpacity>
+          ))}
         </View>
-        <View style={styles.buttonModal}>
         <NavigationButton label={'Close'} onPress={onClose} />
-      </View>
       </View>
     </Modal>
   );
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lightgray,
   },
   modalContainer: {
-   height: '55%',
+    flex: 0.6,
     borderRadius: 15,
     backgroundColor: Colors.white,
   },
@@ -55,9 +57,5 @@ const styles = StyleSheet.create({
   statusText: {
     fontSize: 20,
     fontWeight: 'black',
-  },
-  buttonModal: {
-    justifyContent: 'flex-end',
-    bottom: 30,
   },
 });

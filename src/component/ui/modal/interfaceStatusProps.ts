@@ -6,3 +6,9 @@ export interface IModalStatusProps {
 }
 
 export const statusList = ['Published', 'Draft'];
+
+export interface ISelectStatusProps {
+  value: string;
+  onPress: () => void;
+  isOpen: boolean;
+}

@@ -22,7 +22,7 @@ export const BaseInputForm = ({
       placeholder={placeholder}
       style={StyleSheet.flatten([styles.defaultStyle, styleExtension])}
       multiline={true}
-      numberOfLines={2}
+      numberOfLines={4}
     />
   );
 };

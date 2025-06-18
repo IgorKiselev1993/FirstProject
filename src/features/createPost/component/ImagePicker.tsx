@@ -16,7 +16,7 @@ const {pickImage, removePhoto} = getPhotoPicker(setImage);
     <View style={styles.containerPhotoPicker}>
       <Text style={styles.textPhoto}>Photo</Text>
       <View style={styles.photoWrap}>
-        {image && <RemoveButton onRemove={removePhoto} />}
+        {image && <RemoveButton onRemove={removePhoto} label={'X'}/>}
         <TouchableOpacity onPress={pickImage}>
           {image ? (
             <Image source={{uri: image}} style={styles.image} />

@@ -4,12 +4,13 @@ import {Colors} from '../../../constant/colors.ts';
 
 interface RemoveButtonProps {
   onRemove: () => void;
+  label?: string;
 }
 
-export const RemoveButton = ({onRemove}: RemoveButtonProps) => {
+export const RemoveButton = ({onRemove, label}: RemoveButtonProps) => {
   return (
     <TouchableOpacity style={styles.removeButton} onPress={onRemove}>
-      <Text style={styles.buttonText}>X</Text>
+      <Text style={styles.buttonText}>{label}</Text>
     </TouchableOpacity>
   );
 };

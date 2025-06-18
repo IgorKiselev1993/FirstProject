@@ -1,12 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {Colors} from '../../../constant/colors.ts';
-
-interface ISelectStatusProps {
-  value: string;
-  onPress: () => void;
-  isOpen: boolean;
-}
+import {ISelectStatusProps} from './interfaceStatusProps.ts';
 
 export const SelectStatus = ({value, onPress, isOpen}: ISelectStatusProps) => {
   return (
