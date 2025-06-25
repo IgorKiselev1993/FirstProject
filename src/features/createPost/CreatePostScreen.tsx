@@ -6,9 +6,9 @@ import {Colors} from '../../constant/colors.ts';
 import {ImagePicker} from './component/ImagePicker.tsx';
 import {FormInputPost} from './component/FormInputPost.tsx';
 import {useForm} from '../../hook/useForm.ts';
-import {Post} from '../posts/typePost.ts';
+import {Post} from '../../component/types/Post.ts';
 import {useAppDispatch} from '../../hook/hooksStore.ts';
-import {addPost} from '../posts/postSlice.ts';
+import {addPost} from '../../entities/postSlice.ts';
 import {defaultImageUrl} from '../../constant/defaultImageUrl.ts';
 
 export const CreatePostScreen = () => {

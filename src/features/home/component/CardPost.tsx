@@ -1,28 +1,24 @@
-import {Image, Text, View, StyleSheet} from 'react-native';
 import React from 'react';
-import {Colors} from '../../../constant/colors.ts';
-import {Post} from '../../posts/typePost.ts';
-import {formatPostDate} from '../../../utils/formatPostDate.ts';
+import {Image, Text, View, StyleSheet} from 'react-native';
 import {RemoveButton} from '../../../component/ui/button/RemoveButton.tsx';
+import {Colors} from '../../../constant/colors.ts';
+import {Post} from '../../../component/types/Post.ts';
+import {CardInfo} from './CardInfo.tsx';
 
 interface CardPostProps {
   item: Post;
   onRemove: () => void;
+  onEdit: () => void;
 }
 
-export const CardPost = ({item, onRemove}: CardPostProps) => {
+export const CardPost = ({item, onRemove, onEdit}: CardPostProps) => {
   return (
     <View style={styles.containerPost}>
-      <RemoveButton onRemove={onRemove} label={'X'} />
-      <View style={styles.containerCardPost}>
-        <Image style={styles.imageCard} source={{uri: item.image}} />
-        <View style={styles.containerCardInfo}>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.date}>
-            Created at: {formatPostDate(item.created_at)}
-          </Text>
-          <Text style={styles.status}>{item.status }</Text>
-        </View>
+      <RemoveButton onRemove={onRemove} label={'X'} styleButton={styles.deletePost}/>
+      <RemoveButton onEdit={onEdit} label={'📝'} styleButton={styles.editPost}/>
+      <View style={styles.cardPost}>
+        <Image style={styles.image} source={{uri: item.image}} />
+        <CardInfo item={item} />
       </View>
       <Text style={styles.description} numberOfLines={2} ellipsizeMode={'tail'}>
         {item.description}
@@ -38,34 +34,26 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: Colors.white,
   },
-  containerCardPost: {
+  cardPost: {
     height: 120,
     flexDirection: 'row',
   },
-  imageCard: {
+  image: {
     borderRadius: 10,
     width: 120,
     height: 120,
-  },
-  containerCardInfo: {
-    paddingLeft: 10,
-    justifyContent: 'space-around',
-  },
-  title: {
-    fontSize: 22,
-  },
-  date: {
-    fontSize: 14,
-  },
-  status: {
-    padding: 20,
-    fontSize: 16,
-  },
-  green:{
-
-  },
-  description: {
+  },description: {
     marginTop: 20,
     fontSize: 16,
+  },
+  deletePost: {
+    right: 10,
+    top: 10,
+    borderRadius: 50,
+  },
+  editPost: {
+    right: 40,
+    top: 10,
+    backgroundColor: Colors.blue,
   },
 });

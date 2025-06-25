@@ -1,15 +1,17 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
 import {Colors} from '../../../constant/colors.ts';
 
 interface RemoveButtonProps {
-  onRemove: () => void;
-  label?: string;
+  onRemove?: () => void;
+  label: string;
+  onEdit?: () => void;
+  styleButton?: ViewStyle;
 }
 
-export const RemoveButton = ({onRemove, label}: RemoveButtonProps) => {
+export const RemoveButton = ({onRemove, label, onEdit, styleButton}: RemoveButtonProps) => {
   return (
-    <TouchableOpacity style={styles.removeButton} onPress={onRemove}>
+    <TouchableOpacity style={[styles.removeButton, styleButton]} onPress={onRemove} onPressIn={onEdit}>
       <Text style={styles.buttonText}>{label}</Text>
     </TouchableOpacity>
   );

@@ -2,33 +2,35 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Colors} from '../../../constant/colors.ts';
 import {BaseInputForm} from '../../../component/ui/input/BaseInputForm.tsx';
-import {useModalStatus} from '../../../hook/useModalStatus.ts';
+import {useModal} from '../../../hook/useModal.ts';
 import {SelectStatus} from '../../../component/ui/modal/SelectStatus.tsx';
 import {ModalStatus} from '../../../component/ui/modal/ModalStatus.tsx';
-import {FormInputProps} from './interfaceFormInput.ts';
+import {FormInputProps} from '../../../component/types/FormInput.ts';
 
 export const FormInputPost = ({values, setValues}: FormInputProps) => {
-  const modal = useModalStatus();
-const dataFormInputPost =  [
-  {
-    id: 'title',
-    value: values.title,
-    onChange: setValues.setTitle,
-    placeholder: 'Title',
-  },
-  {
-    id: 'status',
-    value: values.status,
-    onChange: setValues.setStatus,
-    placeholder: 'Status',
-  },
-  {
-    id: 'description',
-    value: values.description,
-    onChange: setValues.setDescription,
-    placeholder: 'Description',
-  },
-];
+  const modal = useModal();
+
+  const dataFormInputPost = [
+    {
+      id: 'title',
+      value: values.title,
+      onChange: setValues.setTitle,
+      placeholder: 'Title',
+    },
+    {
+      id: 'status',
+      value: values.status,
+      onChange: setValues.setStatus,
+      placeholder: 'Status',
+    },
+    {
+      id: 'description',
+      value: values.description,
+      onChange: setValues.setDescription,
+      placeholder: 'Description',
+    },
+  ];
+
   return (
     <View style={styles.containerDataInput}>
       {dataFormInputPost.map(el =>
@@ -60,6 +62,7 @@ const dataFormInputPost =  [
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   containerDataInput: {
     flex: 0.4,

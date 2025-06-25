@@ -1,5 +1,4 @@
 import ImageCropPicker from 'react-native-image-crop-picker';
-import {Alert} from 'react-native';
 
 const formatImage = {
   cropping: true,
@@ -21,7 +20,6 @@ export const pickImageForm = async (source: Source): Promise<string | null> => {
     return null;
   } catch (error) {
     console.log(error);
-    Alert.alert('Ошибка при выборе фото');
     return null;
   }
 };

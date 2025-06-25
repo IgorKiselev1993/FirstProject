@@ -1,4 +1,4 @@
-import {postSlice} from '../features/posts/postSlice.ts';
+import {postSlice} from '../entities/postSlice.ts';
 import {combineReducers} from 'redux';
 
 export const rootReducer = combineReducers({

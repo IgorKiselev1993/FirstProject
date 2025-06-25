@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-export const useModalStatus = () => {
+export const useModal = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const openModal = () => setIsModalVisible(true);
   const closeModal = () => setIsModalVisible(false);

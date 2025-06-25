@@ -4,25 +4,28 @@ import {Colors} from '../../../constant/colors.ts';
 import {RemoveButton} from '../../../component/ui/button/RemoveButton.tsx';
 import {getPhotoPicker} from '../../../utils/imageUtils/getPhotoPicker.ts';
 
-
 interface ImagePickerProps {
   image: string | null;
   setImage: (image: string | null) => void;
 }
 
 export const ImagePicker = ({image, setImage}: ImagePickerProps) => {
-const {pickImage, removePhoto} = getPhotoPicker(setImage);
+  const {pickImage, removePhoto} = getPhotoPicker(setImage);
+
   return (
     <View style={styles.containerPhotoPicker}>
       <Text style={styles.textPhoto}>Photo</Text>
       <View style={styles.photoWrap}>
-        {image && <RemoveButton onRemove={removePhoto} label={'X'}/>}
+        {image && <RemoveButton onRemove={removePhoto} label={'X'} />}
         <TouchableOpacity onPress={pickImage}>
-          {image ? (
-            <Image source={{uri: image}} style={styles.image} />
-          ) : (
-            <Image source={require('../../../assets/icons/AddPhoto.png')} />
-          )}
+          <Image
+            style={styles.image}
+            source={
+              image
+                ? {uri: image}
+                : require('../../../assets/icons/AddPhoto.png')
+            }
+          />
         </TouchableOpacity>
       </View>
     </View>
