@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {Colors} from '../../../constant/colors.ts';
-import {SelectStatusProps} from '../../types/StatusProps.ts';
+import {SelectStatus} from '../../types/StatusProps.ts';
 
-export const SelectStatus = ({value, onPress, isOpen}: SelectStatusProps) => {
+export const SelectStatusInput = ({value, onPress, isOpen}: SelectStatus) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.statusInput}>
       <View style={styles.containerStatus}>

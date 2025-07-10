@@ -1,4 +1,4 @@
-import {getPermissions} from './getPermissions.ts';
+import {getPermissions} from '../getPermissions.ts';
 import {Alert} from 'react-native';
 import {pickImageForm} from './pickImageForm.ts';
 

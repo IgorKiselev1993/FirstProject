@@ -1,4 +1,4 @@
-export interface FormInputProps {
+export interface FormInput {
   values: {
     title: string;
     status: string;

@@ -6,11 +6,12 @@ import {Screens} from '../../navigation/config/screens.ts';
 import {NavigationProps} from '../../navigation/stack/root/RootStackContainer.tsx';
 import {useAppDispatch, useAppSelector} from '../../hook/hooksStore.ts';
 import {Post} from '../../component/types/Post.ts';
-import {CardPost} from './component/CardPost.tsx';
+import {CardPostView} from './component/CardPostView.tsx';
 import {EmptyHomeScreen} from './component/EmptyHomeScreen.tsx';
 import {deletePost, editPost} from '../../entities/postSlice.ts';
 import {useModal} from '../../hook/useModal.ts';
 import {ModalEditPost} from './component/ModalEditPost.tsx';
+import {Colors} from '../../constant/colors.ts';
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProps>();
@@ -18,6 +19,7 @@ export const HomeScreen = () => {
   const dispatch = useAppDispatch();
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const {isModalVisible, openModal, closeModal} = useModal();
+  const [loadingCounter, setLoadingCounter] = useState(0);
 
   const handleSelectedPost = (post: Post) => {
     setSelectedPost(post);
@@ -38,10 +40,11 @@ export const HomeScreen = () => {
         <FlatList
           data={posts}
           renderItem={({item}) => (
-            <CardPost
+            <CardPostView
               item={item}
               onRemove={() => dispatch(deletePost(item.id))}
               onEdit={() => handleSelectedPost(item)}
+              setLoadingCounter={setLoadingCounter}
             />
           )}
           keyExtractor={item => item.id.toString()}
@@ -60,6 +63,8 @@ export const HomeScreen = () => {
       <NavigationButton
         label={'New Post'}
         onPress={() => navigation.navigate(Screens.createPost)}
+        styleStates={styles.disabledButton}
+        disabled={loadingCounter > 0}
       />
     </View>
   );
@@ -71,5 +76,8 @@ const styles = StyleSheet.create({
   },
   containerPosts: {
     paddingBottom: 90,
+  },
+  disabledButton: {
+    backgroundColor: Colors.gray,
   },
 });

@@ -1,6 +1,6 @@
 import {Platform, Permission, PermissionsAndroid} from 'react-native';
 
-export const getPermissions = () =>
+export const getPermissions = async () =>
   new Promise(async (resolve, reject) => {
     if (Platform.OS === 'android' && Platform.Version > 22) {
       try {
@@ -12,14 +12,22 @@ export const getPermissions = () =>
         );
         console.log('camera');
 
-        const granted = camera === PermissionsAndroid.RESULTS.GRANTED;
+        const gps = await requestPermissions(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          'FirstProject App GPS Permission',
+          'FirstProject App needs access to your GPS Location',
+        );
+        console.log('gps');
+
+        const granted = camera === PermissionsAndroid.RESULTS.GRANTED &&
+            gps === PermissionsAndroid.RESULTS.GRANTED;
 
         if (granted) {
-          resolve(true);
           console.log('granted');
+          resolve(true);
         } else {
-          resolve(false);
           console.log('denied');
+          resolve(false);
         }
       } catch (err) {
         if (err instanceof Error) {
@@ -35,7 +43,11 @@ export const getPermissions = () =>
     }
   });
 
-const  requestPermissions = async (permission: Permission, title: string, message: string) => {
+const requestPermissions = async (
+  permission: Permission,
+  title: string,
+  message: string,
+) => {
   console.log(`Request Permissions ${permission}`);
   return await PermissionsAndroid.request(permission, {
     title,

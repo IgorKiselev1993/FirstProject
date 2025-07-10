@@ -3,11 +3,11 @@ import {StyleSheet, View} from 'react-native';
 import {Colors} from '../../../constant/colors.ts';
 import {BaseInputForm} from '../../../component/ui/input/BaseInputForm.tsx';
 import {useModal} from '../../../hook/useModal.ts';
-import {SelectStatus} from '../../../component/ui/modal/SelectStatus.tsx';
-import {ModalStatus} from '../../../component/ui/modal/ModalStatus.tsx';
-import {FormInputProps} from '../../../component/types/FormInput.ts';
+import {SelectStatusInput} from '../../../component/ui/modal/SelectStatusInput.tsx';
+import {ModalStatusView} from '../../../component/ui/modal/ModalStatusView.tsx';
+import {FormInput} from '../../../component/types/FormInput.ts';
 
-export const FormInputPost = ({values, setValues}: FormInputProps) => {
+export const FormInputPost = ({values, setValues}: FormInput) => {
   const modal = useModal();
 
   const dataFormInputPost = [
@@ -35,7 +35,7 @@ export const FormInputPost = ({values, setValues}: FormInputProps) => {
     <View style={styles.containerDataInput}>
       {dataFormInputPost.map(el =>
         el.id === 'status' ? (
-          <SelectStatus
+          <SelectStatusInput
             key={el.id}
             value={values.status}
             onPress={modal.openModal}
@@ -53,7 +53,7 @@ export const FormInputPost = ({values, setValues}: FormInputProps) => {
           />
         ),
       )}
-      <ModalStatus
+      <ModalStatusView
         visible={modal.isModalVisible}
         onSelect={setValues.setStatus}
         selectedValue={values.status}

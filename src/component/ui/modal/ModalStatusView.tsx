@@ -2,14 +2,14 @@ import React from 'react';
 import {Modal, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {NavigationButton} from '../button/NavigationButton.tsx';
 import {Colors} from '../../../constant/colors.ts';
-import {ModalStatusProps} from '../../types/StatusProps.ts';
+import {ModalStatus} from '../../types/StatusProps.ts';
 
-export const ModalStatus = ({
+export const ModalStatusView = ({
   visible,
   onClose,
   selectedValue,
   onSelect,
-}: ModalStatusProps) => {
+}: ModalStatus) => {
   const statusList = ['Published', 'Draft'];
 
   return (

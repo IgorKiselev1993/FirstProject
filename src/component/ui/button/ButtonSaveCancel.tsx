@@ -6,12 +6,13 @@ interface ButtonSaveCancelProps {
   onPress: () => void;
   label: string;
   styleSave?: ViewStyle;
+  disabled?: boolean;
 }
 
-export const ButtonSaveCancel = ({onPress, label, styleSave}: ButtonSaveCancelProps) => {
+export const ButtonSaveCancel = ({onPress, label, styleSave, disabled}: ButtonSaveCancelProps) => {
   return (
-      <TouchableOpacity onPress={onPress}>
-        <Text style={[styles.defaultButton, styleSave]}>{label}</Text>
+      <TouchableOpacity onPress={onPress} disabled={disabled}>
+        <Text style={[styles.defaultButton, disabled ? styles.disabledButton : styleSave]}>{label}</Text>
       </TouchableOpacity>
   );
 };
@@ -24,4 +25,7 @@ const styles = StyleSheet.create({
       color: Colors.white,
       backgroundColor: Colors.red,
   },
+    disabledButton: {
+      backgroundColor: Colors.gray,
+    },
 });

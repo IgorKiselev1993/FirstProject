@@ -11,4 +11,5 @@ export const Colors = {
   lightred: 'rgba(221,155,155,0.38)',
   lightgreen: 'rgba(142,232,142,0.27)',
   whitesmoke: '#F5F5F5',
+  slategray: '#7200fd',
 };
