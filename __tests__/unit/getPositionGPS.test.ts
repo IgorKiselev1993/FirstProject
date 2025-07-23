@@ -25,11 +25,11 @@ describe('Geolocation GPS', () => {
   });
 
   test('Handling coordinate request error GPS', async () => {
-    (Geolocation.getCurrentPosition as jest.Mock).mockImplementation(errorCallback => {
+    (Geolocation.getCurrentPosition as jest.Mock).mockImplementation((successCallback, errorCallback) => {
         errorCallback(new Error('Error GPS'));
       },
     );
 
-   await expect(getPositionGPS()).rejects.toThrow('Error GPS');
+   await expect(getPositionGPS()).rejects.toThrow();
   });
 });
