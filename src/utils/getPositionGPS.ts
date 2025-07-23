@@ -1,4 +1,5 @@
 import Geolocation from '@react-native-community/geolocation';
+import {Locales} from '../constant/locales.ts';
 
 export const getPositionGPS = async (): Promise<{
   latitude: number;
@@ -12,7 +13,7 @@ export const getPositionGPS = async (): Promise<{
         console.log(latitude, longitude);
       },
       error => {
-        console.log('Geolocation Error:', error.message);
+        console.log(Locales.error.geolocationErr, error.message);
         reject(error);
       },
       {

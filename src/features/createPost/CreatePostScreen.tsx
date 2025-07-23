@@ -10,6 +10,7 @@ import {Post} from '../../component/types/Post.ts';
 import {useAppDispatch} from '../../hook/hooksStore.ts';
 import {addPost} from '../../entities/postSlice.ts';
 import {defaultImageUrl} from '../../constant/defaultImageUrl.ts';
+import {Locales} from '../../constant/locales.ts';
 
 export const CreatePostScreen = () => {
   const navigation = useNavigation();
@@ -37,7 +38,7 @@ export const CreatePostScreen = () => {
       <ImagePicker image={image} setImage={setImage} />
       <View style={styles.containerButton}>
         <NavigationButton
-          label={'Submit'}
+          label={Locales.createPost.sendingButton}
           disabled={!isFormValid}
           onPress={handleSubmit}
           styleStates={styles.disabledButton}

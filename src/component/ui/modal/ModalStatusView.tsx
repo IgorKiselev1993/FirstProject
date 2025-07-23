@@ -3,6 +3,7 @@ import {Modal, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {NavigationButton} from '../button/NavigationButton.tsx';
 import {Colors} from '../../../constant/colors.ts';
 import {ModalStatus} from '../../types/StatusProps.ts';
+import {Locales} from '../../../constant/locales.ts';
 
 export const ModalStatusView = ({
   visible,
@@ -10,7 +11,7 @@ export const ModalStatusView = ({
   selectedValue,
   onSelect,
 }: ModalStatus) => {
-  const statusList = ['Published', 'Draft'];
+  const statusList = [Locales.uiModal.openStatus, Locales.uiModal.closeStatus];
 
   return (
     <Modal
@@ -33,7 +34,7 @@ export const ModalStatusView = ({
             </TouchableOpacity>
           ))}
         </View>
-        <NavigationButton label={'Close'} onPress={onClose} />
+        <NavigationButton label={Locales.uiModal.cancelButton} onPress={onClose} />
       </View>
     </Modal>
   );

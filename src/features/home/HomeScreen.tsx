@@ -12,6 +12,7 @@ import {deletePost, editPost} from '../../entities/postSlice.ts';
 import {useModal} from '../../hook/useModal.ts';
 import {ModalEditPost} from './component/ModalEditPost.tsx';
 import {Colors} from '../../constant/colors.ts';
+import {Locales} from '../../constant/locales.ts';
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProps>();
@@ -61,7 +62,7 @@ export const HomeScreen = () => {
         )}
       </View>
       <NavigationButton
-        label={'New Post'}
+        label={Locales.home.transitionButton}
         onPress={() => navigation.navigate(Screens.createPost)}
         styleStates={styles.disabledButton}
         disabled={loadingCounter > 0}

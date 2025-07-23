@@ -1,8 +1,9 @@
 import {useState} from 'react';
+import {Locales} from '../constant/locales.ts';
 
 export const useForm = () => {
   const [title, setTitle] = useState('');
-  const [status, setStatus] = useState('Published');
+  const [status, setStatus] = useState(Locales.uiModal.openStatus);
   const [description, setDescription] = useState('');
   const [image, setImage] = useState<string | null>(null);
 

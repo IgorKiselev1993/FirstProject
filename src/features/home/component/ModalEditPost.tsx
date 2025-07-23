@@ -3,6 +3,7 @@ import React from 'react';
 import {Colors} from '../../../constant/colors.ts';
 import {ButtonSaveCancel} from '../../../component/ui/button/ButtonSaveCancel.tsx';
 import {EditPost} from '../../../component/types/EditPost.ts';
+import {Locales} from '../../../constant/locales.ts';
 
 export const ModalEditPost = ({
   visible,
@@ -19,10 +20,10 @@ export const ModalEditPost = ({
     setValues(prev => (prev ? {...prev, description: text} : prev));
   };
 
-const isTitleValid = values.title.trim().length > 0;
-const isDescriptionValid = values.description.trim().length > 0;
-const isTitleInvalid = values.title.trim().length === 0;
-const isDescriptionInvalid = values.description.trim().length === 0;
+  const isTitleValid = values.title.trim().length > 0;
+  const isDescriptionValid = values.description.trim().length > 0;
+  const isTitleInvalid = values.title.trim().length === 0;
+  const isDescriptionInvalid = values.description.trim().length === 0;
 
   const isValid = isTitleValid && isDescriptionValid;
 
@@ -36,24 +37,30 @@ const isDescriptionInvalid = values.description.trim().length === 0;
             numberOfLines={2}
             value={values.title}
             onChangeText={handleTitleChange}
-            placeholder={'Введите заголовок'}
+            placeholder={Locales.home.titlePlaceholder}
             placeholderTextColor={Colors.red}
           />
           <Text style={styles.placeholderInput}>Description</Text>
           <TextInput
-            style={[styles.inputText, isDescriptionInvalid && styles.inputInvalid]}
+            style={[
+              styles.inputText,
+              isDescriptionInvalid && styles.inputInvalid,
+            ]}
             numberOfLines={3}
             value={values.description}
             onChangeText={handleDescriptionChange}
-            placeholder={'Введите описание'}
+            placeholder={Locales.home.descriptionPlaceholder}
             placeholderTextColor={Colors.red}
           />
           <View style={styles.buttonModal}>
-            <ButtonSaveCancel onPress={onClose} label={'Отмена'} />
+            <ButtonSaveCancel
+              onPress={onClose}
+              label={Locales.common.cancelButton}
+            />
             <ButtonSaveCancel
               styleSave={styles.buttonSave}
               onPress={onSave}
-              label={'Сохранить'}
+              label={Locales.common.saveButton}
               disabled={!isValid}
             />
           </View>

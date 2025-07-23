@@ -1,6 +1,7 @@
 import {getPermissions} from '../getPermissions.ts';
 import {Alert} from 'react-native';
 import {pickImageForm} from './pickImageForm.ts';
+import {Locales} from '../../constant/locales.ts';
 
 export const getPhotoPicker = (setImage: (image: string | null) => void) => {
   const pickImage = async () => {
@@ -9,10 +10,10 @@ export const getPhotoPicker = (setImage: (image: string | null) => void) => {
       Alert.alert('Нет разрешения');
       return;
     }
-    Alert.alert('Загрузить фото из:', '', [
-      {text: 'Камера', onPress: () => handlePick('camera')},
-      {text: 'Галерея', onPress: () => handlePick('gallery')},
-      {text: 'Отмена', style: 'cancel'},
+    Alert.alert(Locales.photoPicker.loadingPhoto, '', [
+      {text: Locales.common.camera, onPress: () => handlePick('camera')},
+      {text: Locales.common.gallery, onPress: () => handlePick('gallery')},
+      {text: Locales.common.cancelButton, style: 'cancel'},
     ]);
   };
 
@@ -20,15 +21,15 @@ export const getPhotoPicker = (setImage: (image: string | null) => void) => {
     const base64Image = await pickImageForm(source);
     if (base64Image) {
       setImage(base64Image);
-      console.log('Изображение добавленно');
+      console.log(Locales.photoPicker.imageAdded);
     } else {
-      Alert.alert('Ошибка при выборе изображения');
+      Alert.alert(Locales.error.imageErr);
     }
   };
 
   const removePhoto = () => {
     setImage(null);
-    console.log('Изображение удалено');
+    console.log(Locales.photoPicker.imageDelete);
   };
 
   return {pickImage, removePhoto};

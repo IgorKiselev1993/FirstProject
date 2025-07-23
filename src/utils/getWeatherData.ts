@@ -1,6 +1,7 @@
 import {openWeatherUrl, openWeatherApiKey} from '../constant/apiKey.ts';
 import {WeatherData} from '../component/types/WeatherData.ts';
 import {Alert} from 'react-native';
+import {Locales} from '../constant/locales.ts';
 
 export const getWeatherData = async (
   latitude: number,
@@ -10,7 +11,7 @@ export const getWeatherData = async (
     const url = `${openWeatherUrl}lat=${latitude}&lon=${longitude}&appid=${openWeatherApiKey}&units=metric&lang=ru`;
 
     const response = await fetch(url);
-    console.log('HTTP статус:', response.status);
+    console.log(Locales.common.http, response.status);
 
     if (!response.ok) {
       return null;
@@ -26,11 +27,11 @@ export const getWeatherData = async (
     };
   } catch (error) {
     if (error instanceof Error) {
-      Alert.alert('Ошибка запроса погоды:', error.message);
+      Alert.alert(Locales.error.weatherRequestErr, error.message);
       console.log(error.message);
       return null;
     } else {
-      console.log('Unknown error:', error);
+      console.log(Locales.error.unknownErr);
       return null;
     }
   }

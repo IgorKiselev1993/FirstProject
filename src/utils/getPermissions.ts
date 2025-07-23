@@ -1,4 +1,5 @@
 import {Platform, Permission, PermissionsAndroid} from 'react-native';
+import {Locales} from '../constant/locales.ts';
 
 export const getPermissions = async () =>
   new Promise(async (resolve, reject) => {
@@ -6,16 +7,15 @@ export const getPermissions = async () =>
       try {
         const camera = await requestPermissions(
           PermissionsAndroid.PERMISSIONS.CAMERA,
-          'FirstProject App Camera Permission',
-          'FirstProject App needs access to your camera ' +
-            'so you can take  pictures.',
+          Locales.permissions.titleCamera,
+          Locales.permissions.messageCamera,
         );
-        console.log('camera');
+        console.log(Locales.common.camera);
 
         const gps = await requestPermissions(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-          'FirstProject App GPS Permission',
-          'FirstProject App needs access to your GPS Location',
+          Locales.permissions.titleGps,
+          Locales.permissions.messageGps,
         );
         console.log('gps');
 
@@ -23,10 +23,10 @@ export const getPermissions = async () =>
             gps === PermissionsAndroid.RESULTS.GRANTED;
 
         if (granted) {
-          console.log('granted');
+          console.log(Locales.common.granted);
           resolve(true);
         } else {
-          console.log('denied');
+          console.log(Locales.common.denied);
           resolve(false);
         }
       } catch (err) {
@@ -34,8 +34,8 @@ export const getPermissions = async () =>
           console.log(`Ошибка: ${err.message}`);
           reject(err);
         } else {
-          console.log('Неизвестная ошибка');
-          reject(new Error('Unknow Error'));
+          console.log(Locales.error.unknownErr);
+          reject(new Error(Locales.error.unknownErr));
         }
       }
     } else {

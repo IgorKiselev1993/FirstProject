@@ -6,35 +6,36 @@ import {useModal} from '../../../hook/useModal.ts';
 import {SelectStatusInput} from '../../../component/ui/modal/SelectStatusInput.tsx';
 import {ModalStatusView} from '../../../component/ui/modal/ModalStatusView.tsx';
 import {FormInput} from '../../../component/types/FormInput.ts';
+import {Locales} from '../../../constant/locales.ts';
 
 export const FormInputPost = ({values, setValues}: FormInput) => {
   const modal = useModal();
 
   const dataFormInputPost = [
     {
-      id: 'title',
+      id: 0,
       value: values.title,
       onChange: setValues.setTitle,
-      placeholder: 'Title',
+      placeholder: Locales.createPost.titlePlaceholder,
     },
     {
-      id: 'status',
+      id: 1,
       value: values.status,
       onChange: setValues.setStatus,
-      placeholder: 'Status',
+      placeholder: Locales.createPost.statusPlaceholder,
     },
     {
-      id: 'description',
+      id: 2,
       value: values.description,
       onChange: setValues.setDescription,
-      placeholder: 'Description',
+      placeholder: Locales.createPost.descriptionPlaceholder,
     },
   ];
 
   return (
     <View style={styles.containerDataInput}>
       {dataFormInputPost.map(el =>
-        el.id === 'status' ? (
+        el.id === 1 ? (
           <SelectStatusInput
             key={el.id}
             value={values.status}
@@ -48,7 +49,7 @@ export const FormInputPost = ({values, setValues}: FormInput) => {
             onChange={el.onChange}
             placeholder={el.placeholder}
             styleExtension={
-              el.id === 'description' ? styles.descriptionInput : undefined
+              el.id === 2 ? styles.descriptionInput : undefined
             }
           />
         ),

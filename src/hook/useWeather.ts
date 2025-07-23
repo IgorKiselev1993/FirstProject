@@ -4,6 +4,7 @@ import {getPermissions} from '../utils/getPermissions.ts';
 import {Alert} from 'react-native';
 import {getPositionGPS} from '../utils/getPositionGPS.ts';
 import {getWeatherData} from '../utils/getWeatherData.ts';
+import {Locales} from '../constant/locales.ts';
 
 export const useWeather = (
   setLoadingCounter: Dispatch<SetStateAction<number>>,
@@ -31,7 +32,7 @@ export const useWeather = (
     }
     const hasPermissions = await getPermissions();
     if (!hasPermissions) {
-      Alert.alert('Отказ в доступе к GPS');
+      Alert.alert(Locales.permissions.gpsDenied);
       return;
     }
     setLoading(true);
@@ -44,9 +45,9 @@ export const useWeather = (
       const position = await getPositionGPS();
       const {latitude, longitude} = position;
       const weatherData = await getWeatherData(latitude, longitude);
-      console.log('Weather data loaded:', weatherData);
+      console.log(weatherData);
       if (!weatherData) {
-        setError('Ошибка получения данных о погоде');
+        setError(Locales.error.weatherDataErr);
         setIsEnabled(false);
         return;
       }
@@ -56,7 +57,7 @@ export const useWeather = (
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError('Unknown error');
+        setError(Locales.error.unknownErr);
       }
       setIsEnabled(false);
     } finally {
