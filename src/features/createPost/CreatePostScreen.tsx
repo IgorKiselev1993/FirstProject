@@ -9,7 +9,6 @@ import {useForm} from '../../hook/useForm.ts';
 import {Post} from '../../component/types/Post.ts';
 import {useAppDispatch} from '../../hook/hooksStore.ts';
 import {addPost} from '../../entities/postSlice.ts';
-import {defaultImageUrl} from '../../constant/defaultImageUrl.ts';
 import {Locales} from '../../constant/locales.ts';
 
 export const CreatePostScreen = () => {
@@ -22,7 +21,7 @@ export const CreatePostScreen = () => {
      const newPost: Post = {
        id: Date.now().toString(),
        created_at: new Date().toISOString(),
-       image: image ?? defaultImageUrl,
+       image: image ?? require('../../assets/icons/DefaultImage.jpg'),
        title: values.title,
        status: values.status,
        description: values.description,

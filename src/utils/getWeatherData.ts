@@ -1,14 +1,14 @@
-import {openWeatherUrl, openWeatherApiKey} from '../constant/apiKey.ts';
 import {WeatherData} from '../component/types/WeatherData.ts';
 import {Alert} from 'react-native';
 import {Locales} from '../constant/locales.ts';
+import {apiKey,apiURL} from '../../.env.ts';
 
 export const getWeatherData = async (
   latitude: number,
   longitude: number,
 ): Promise<WeatherData | null> => {
   try {
-    const url = `${openWeatherUrl}lat=${latitude}&lon=${longitude}&appid=${openWeatherApiKey}&units=metric&lang=ru`;
+    const url = `${apiURL}lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&lang=ru`;
 
     const response = await fetch(url);
     console.log(Locales.common.http, response.status);

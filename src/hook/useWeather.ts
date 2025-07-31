@@ -41,7 +41,6 @@ export const useWeather = (
     }
     setError(null);
     try {
-      console.log('lat, lon');
       const position = await getPositionGPS();
       const {latitude, longitude} = position;
       const weatherData = await getWeatherData(latitude, longitude);

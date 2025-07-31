@@ -1,47 +1,45 @@
-import {Platform, Permission, PermissionsAndroid} from 'react-native';
+import {Permission, PermissionsAndroid} from 'react-native';
 import {Locales} from '../constant/locales.ts';
+import {isAndroid} from '../constant/isAndroid.ts';
 
-export const getPermissions = async () =>
-  new Promise(async (resolve, reject) => {
-    if (Platform.OS === 'android' && Platform.Version > 22) {
-      try {
-        const camera = await requestPermissions(
-          PermissionsAndroid.PERMISSIONS.CAMERA,
-          Locales.permissions.titleCamera,
-          Locales.permissions.messageCamera,
-        );
-        console.log(Locales.common.camera);
+export const getPermissions = async (): Promise<boolean> => {
+  if (!isAndroid) {return true;}
+  try {
+    const camera = await requestPermissions(
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+      Locales.permissions.titleCamera,
+      Locales.permissions.messageCamera,
+    );
+    console.log(Locales.common.camera);
 
-        const gps = await requestPermissions(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-          Locales.permissions.titleGps,
-          Locales.permissions.messageGps,
-        );
-        console.log('gps');
+    const gps = await requestPermissions(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      Locales.permissions.titleGps,
+      Locales.permissions.messageGps,
+    );
+    console.log('gps');
 
-        const granted = camera === PermissionsAndroid.RESULTS.GRANTED &&
-            gps === PermissionsAndroid.RESULTS.GRANTED;
+    const granted =
+      camera === PermissionsAndroid.RESULTS.GRANTED &&
+      gps === PermissionsAndroid.RESULTS.GRANTED;
 
-        if (granted) {
-          console.log(Locales.common.granted);
-          resolve(true);
-        } else {
-          console.log(Locales.common.denied);
-          resolve(false);
-        }
-      } catch (err) {
-        if (err instanceof Error) {
-          console.log(`Ошибка: ${err.message}`);
-          reject(err);
-        } else {
-          console.log(Locales.error.unknownErr);
-          reject(new Error(Locales.error.unknownErr));
-        }
-      }
+    if (granted) {
+      console.log(Locales.common.granted);
+      return true;
     } else {
-      resolve(true);
+      console.log(Locales.common.denied);
+      return false;
     }
-  });
+  } catch (err) {
+    if (err instanceof Error) {
+      console.log(`Ошибка: ${err.message}`);
+      throw err;
+    } else {
+      console.log(Locales.error.unknownErr);
+      throw new Error(Locales.error.unknownErr);
+    }
+  }
+};
 
 const requestPermissions = async (
   permission: Permission,

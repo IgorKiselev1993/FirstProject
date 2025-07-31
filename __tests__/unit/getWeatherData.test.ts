@@ -34,7 +34,7 @@ describe('getWeatherData', () => {
   it('Return null on API error (404)', async () => {
     globalThis.fetch = jest.fn(() => {
       return Promise.resolve(
-        new Response(JSON.stringify({}), {
+        new Response(JSON.stringify(null), {
           status: 404,
           statusText: 'Not Found',
         }),

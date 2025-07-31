@@ -1,6 +1,12 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    "types": ["jest", "node"],
-  }
+    "types": [
+      "jest",
+      "node"
+    ]
+  },
+  "include": [
+    "types/env.d.ts"
+  ]
 }

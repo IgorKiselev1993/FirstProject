@@ -1,9 +1,9 @@
+import {getPositionGPS} from '../../src/utils/getPositionGPS.ts';
+import Geolocation from '@react-native-community/geolocation';
+
 jest.mock('@react-native-community/geolocation', () => ({
   getCurrentPosition: jest.fn(),
 }));
-
-import {getPositionGPS} from '../../src/utils/getPositionGPS.ts';
-import Geolocation from '@react-native-community/geolocation';
 
 describe('Geolocation GPS', () => {
   afterEach(() => {
