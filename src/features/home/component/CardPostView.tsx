@@ -1,70 +1,83 @@
 import React from 'react';
-import {Image, Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Image} from 'react-native';
+import {useWeatherToggle} from '../../../hook/useWeatherToggle.ts';
 import {RemoveButton} from '../../../component/ui/button/RemoveButton.tsx';
-import {Colors} from '../../../constant/colors.ts';
 import {CardInfo} from './CardInfo.tsx';
 import {MeteorologyPost} from './MeteorologyPost.tsx';
-import {useWeather} from '../../../hook/useWeather.ts';
+import {Colors} from '../../../constant/colors.ts';
 import {CardPost} from '../../../component/types/CardPost.ts';
 
-export const CardPostView = ({
-  item,
-  onRemove,
-  onEdit,
-    setLoadingCounter,
-}: CardPost) => {
-  const {error, weather, handleToggle, isEnabled, loading} = useWeather(setLoadingCounter);
+export const CardPostView = React.memo(({item, onRemove, onEdit}: CardPost) => {
+  const {error, weather, handleToggle, isEnabled, loading} = useWeatherToggle(
+    item.id,
+  );
+
   return (
     <View style={styles.containerPost}>
       <RemoveButton
-        onRemove={onRemove}
+        onRemove={() => onRemove(item.id)}
         label={'X'}
         styleButton={styles.deletePost}
       />
       <RemoveButton
-        onEdit={onEdit}
+        onEdit={() => onEdit(item)}
         label={'📝'}
         styleButton={styles.editPost}
       />
       <View style={styles.cardPost}>
-        <Image style={styles.image} source={{uri: item.image}} />
+        <Image
+          style={styles.image}
+          source={
+            item.image
+              ? {uri: item.image}
+              : require('../../../assets/icons/DefaultImage.jpg')
+          }
+        />
         <CardInfo item={item} />
       </View>
       <Text style={styles.description} numberOfLines={2} ellipsizeMode={'tail'}>
         {item.description}
       </Text>
-      <MeteorologyPost loading={loading} weather={weather} isEnabled={isEnabled} handleToggle={handleToggle} />
-        {error && <Text style={styles.errorText}>{error}</Text>}
+      <MeteorologyPost
+        loading={loading}
+        weather={weather}
+        isEnabled={isEnabled}
+        handleToggle={handleToggle}
+      />
+      {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   containerPost: {
-    padding: 20,
-    top: 20,
-    marginBottom: 20,
-    backgroundColor: Colors.white,
+    padding: 10,
+    margin: 15,
+    backgroundColor: Colors.silver,
+    borderRadius: 15,
   },
   cardPost: {
     height: 120,
     flexDirection: 'row',
+    alignItems: 'center',
   },
   image: {
-    borderRadius: 10,
-    width: 120,
-    height: 120,
+    borderRadius: 30,
+    width: 100,
+    height: 100,
   },
   description: {
-    marginTop: 20,
+    marginTop: 10,
     fontSize: 16,
   },
   deletePost: {
+    position: 'absolute',
     right: 10,
     top: 10,
     borderRadius: 50,
   },
   editPost: {
+    position: 'absolute',
     right: 40,
     top: 10,
     backgroundColor: Colors.blue,
@@ -72,7 +85,7 @@ const styles = StyleSheet.create({
   errorText: {
     top: 10,
     alignSelf: 'center',
-    borderRadius:10,
+    borderRadius: 10,
     padding: 10,
     fontSize: 14,
     color: Colors.white,

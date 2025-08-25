@@ -28,27 +28,28 @@ export const CardInfo = ({item}: CardInfoProps) => {
 
 const styles = StyleSheet.create({
   cardInfo: {
-    left: 10,
-    justifyContent: 'space-evenly',
+    paddingLeft: 10,
   },
   title: {
     fontSize: 22,
+    fontWeight: 'bold',
   },
   date: {
-    fontSize: 14,
+    fontSize: 12,
+    color: Colors.gray,
   },
   baseStatus: {
     alignSelf: 'flex-start',
-    padding: 12,
-    borderRadius: 8,
+    borderRadius: 20,
+    padding: 5,
     fontSize: 16,
   },
   greenBd: {
-    color: Colors.green,
-    backgroundColor: Colors.lightgreen,
+    color: Colors.white,
+    backgroundColor: Colors.green,
   },
   redBd: {
-    color: Colors.red,
-    backgroundColor: Colors.lightred,
+    color: Colors.white,
+    backgroundColor: Colors.red,
   },
 });

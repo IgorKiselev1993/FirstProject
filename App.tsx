@@ -4,6 +4,7 @@ import {persistor, store} from './src/store/store.ts';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {Text} from 'react-native';
+import './src/config/configENV';
 
 export default function App(){
   return (

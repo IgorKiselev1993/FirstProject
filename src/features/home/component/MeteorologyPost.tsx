@@ -20,15 +20,15 @@ export const MeteorologyPost = ({
   return (
     <View style={styles.containerMeteorology}>
       <View style={styles.buttonWeather}>
-        <Text style={styles.weatherForecast}>Прогноз погоды</Text>
+        <Text style={styles.weatherForecast}>Опубликовать прогноз погоды</Text>
         {loading ? (
-          <ActivityIndicator size="large" color={Colors.green} />
+          <ActivityIndicator size={100} color={Colors.green} />
         ) : (
           <Switch
             value={isEnabled}
             onValueChange={handleToggle}
             thumbColor={Colors.whitesmoke}
-            trackColor={{true: Colors.yellow, false: Colors.red}}
+            trackColor={{true: Colors.blue, false: Colors.gray}}
           />
         )}
       </View>
@@ -39,7 +39,7 @@ export const MeteorologyPost = ({
 
 const styles = StyleSheet.create({
   containerMeteorology: {
-    flex: 1,
+    marginBottom: 10,
   },
   buttonWeather: {
     top: 10,
@@ -48,33 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   weatherForecast: {
-    fontSize: 22,
-    color: Colors.slategray,
-  },
-  containerWeather: {
-    top: 10,
-    borderRadius: 7,
-    borderWidth: 3,
-    borderColor: Colors.yellow,
-    padding: 10,
-  },
-  city: {
-    fontSize: 30,
-  },
-  iconTemp: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  icon: {
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-  },
-  temperature: {
-    fontSize: 20,
-  },
-  description: {
-    fontSize: 20,
-    justifyContent: 'center',
+    fontSize: 18,
+    color: Colors.blue,
   },
 });

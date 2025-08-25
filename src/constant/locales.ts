@@ -46,4 +46,10 @@ export const Locales = {
     imageAdded: 'Изображение добавленно',
     imageDelete: 'Изображение удалено',
   },
+  env: {
+    invalidKey: 'Переменная API_KEY отсутствует или пустая',
+    invalidUrl: 'Переменная API_URL отсутствует или пустая',
+    validationError: 'Ошибка валидации переменных окружения:',
+    errUnknown: 'Неизвестная ошибка:',
+  },
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {NavigationButton} from '../../component/ui/button/NavigationButton.tsx';
 import {useNavigation} from '@react-navigation/native';
@@ -8,7 +8,7 @@ import {FormInputPost} from './component/FormInputPost.tsx';
 import {useForm} from '../../hook/useForm.ts';
 import {Post} from '../../component/types/Post.ts';
 import {useAppDispatch} from '../../hook/hooksStore.ts';
-import {addPost} from '../../entities/postSlice.ts';
+import {addPost} from '../../store/entities/postSlice.ts';
 import {Locales} from '../../constant/locales.ts';
 
 export const CreatePostScreen = () => {
@@ -16,7 +16,7 @@ export const CreatePostScreen = () => {
   const {values, setValues, image, setImage, isFormValid} = useForm();
   const dispatch = useAppDispatch();
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     if (isFormValid) {
      const newPost: Post = {
        id: Date.now().toString(),
@@ -29,7 +29,7 @@ export const CreatePostScreen = () => {
      dispatch(addPost(newPost));
      navigation.goBack();
     }
-  };
+  }, [values,isFormValid, image, dispatch, navigation]);
 
   return (
     <View style={styles.containerCreatePost}>

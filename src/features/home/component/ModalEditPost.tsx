@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 0.8,
     margin: 20,
     justifyContent: 'space-around',
-    backgroundColor: Colors.blue,
+    backgroundColor: Colors.lightblue1,
   },
   placeholderInput: {
     fontSize: 20,
@@ -94,14 +94,14 @@ const styles = StyleSheet.create({
     margin: 10,
     height: '30%',
     color: Colors.black,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.silver,
   },
   buttonModal: {
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
   buttonSave: {
-    backgroundColor: Colors.green,
+    backgroundColor: Colors.lightgreenButton,
   },
   inputInvalid: {
     borderWidth: 2,

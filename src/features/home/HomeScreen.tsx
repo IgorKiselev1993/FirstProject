@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {NavigationButton} from '../../component/ui/button/NavigationButton.tsx';
 import {useNavigation} from '@react-navigation/native';
@@ -8,46 +8,68 @@ import {useAppDispatch, useAppSelector} from '../../hook/hooksStore.ts';
 import {Post} from '../../component/types/Post.ts';
 import {CardPostView} from './component/CardPostView.tsx';
 import {EmptyHomeScreen} from './component/EmptyHomeScreen.tsx';
-import {deletePost, editPost} from '../../entities/postSlice.ts';
+import {deletePost, editPost} from '../../store/entities/postSlice.ts';
 import {useModal} from '../../hook/useModal.ts';
 import {ModalEditPost} from './component/ModalEditPost.tsx';
 import {Colors} from '../../constant/colors.ts';
 import {Locales} from '../../constant/locales.ts';
+import {isWeatherLoading} from '../../store/entities/weatherSlice.ts';
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProps>();
   const posts = useAppSelector(state => state.posts.posts);
   const dispatch = useAppDispatch();
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const [originalPost, setOriginalPost] = useState<Post | null>(null);
   const {isModalVisible, openModal, closeModal} = useModal();
-  const [loadingCounter, setLoadingCounter] = useState(0);
+  const isLoading = useAppSelector(isWeatherLoading);
 
-  const handleSelectedPost = (post: Post) => {
-    setSelectedPost(post);
-    openModal();
-  };
+  const handleEditPost = useCallback(
+    (post: Post) => {
+      setSelectedPost(post);
+      setOriginalPost(post);
+      openModal();
+    },
+    [openModal],
+  );
 
-  const handleSavePost = () => {
-    if (selectedPost) {
-      dispatch(editPost(selectedPost));
+  const handleSavePost = useCallback(() => {
+    if (selectedPost && originalPost) {
+      const isChangedPost =
+        selectedPost.title !== originalPost.title ||
+        selectedPost.description !== originalPost.description;
+      if (isChangedPost) {
+        dispatch(editPost(selectedPost));
+      }
       setSelectedPost(null);
+      setOriginalPost(null);
       closeModal();
     }
-  };
+  }, [selectedPost, originalPost, dispatch, closeModal]);
 
+  const handleDeletePost = useCallback(
+    (id: string) => {
+      dispatch(deletePost(id));
+    },
+    [dispatch],
+  );
+
+  const renderItem = useCallback(
+    ({item}: {item: Post}) => (
+      <CardPostView
+        item={item}
+        onRemove={handleDeletePost}
+        onEdit={handleEditPost}
+      />
+    ),
+    [handleEditPost, handleDeletePost],
+  );
   return (
     <View style={styles.containerMainScreen}>
       <View style={styles.containerPosts}>
         <FlatList
           data={posts}
-          renderItem={({item}) => (
-            <CardPostView
-              item={item}
-              onRemove={() => dispatch(deletePost(item.id))}
-              onEdit={() => handleSelectedPost(item)}
-              setLoadingCounter={setLoadingCounter}
-            />
-          )}
+          renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
           ListEmptyComponent={<EmptyHomeScreen />}
         />
@@ -65,7 +87,7 @@ export const HomeScreen = () => {
         label={Locales.home.transitionButton}
         onPress={() => navigation.navigate(Screens.createPost)}
         styleStates={styles.disabledButton}
-        disabled={loadingCounter > 0}
+        disabled={isLoading}
       />
     </View>
   );

@@ -13,21 +13,25 @@ export const WeatherDataView = ({weather}: WeatherDataProps) => {
       {weather && (
         <View style={styles.containerWeather}>
           <Text style={styles.city}>{weather.city}</Text>
-          <View style={styles.iconTemp}>
+          <Text
+            style={[
+              styles.temperature,
+              {color: weather.temperature > 0 ? Colors.red : Colors.blue},
+            ]}>
+            {Math.round(weather.temperature)}°C
+          </Text>
+          <View style={styles.row}>
             <Image
               style={styles.icon}
               source={{
                 uri: `https://openweathermap.org/img/wn/${weather.icon}@2x.png`,
               }}
             />
-            <Text style={styles.temperature}>
-              {Math.round(weather.temperature)}°C
+            <Text style={styles.description}>
+              {weather.description.charAt(0).toUpperCase() +
+                weather.description.slice(1)}
             </Text>
           </View>
-          <Text style={styles.description}>
-            {weather.description.charAt(0).toUpperCase() +
-              weather.description.slice(1)}
-          </Text>
         </View>
       )}
     </>
@@ -36,16 +40,19 @@ export const WeatherDataView = ({weather}: WeatherDataProps) => {
 
 const styles = StyleSheet.create({
   containerWeather: {
-    top: 10,
-    borderRadius: 7,
-    borderWidth: 3,
-    borderColor: Colors.yellow,
-    padding: 10,
+    alignItems: 'center',
+    borderRadius: 12,
+    shadowRadius: 4,
+    elevation: 3,
+    backgroundColor: Colors.white1,
+    marginTop: 20,
   },
   city: {
-    fontSize: 30,
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 4,
   },
-  iconTemp: {
+  row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -55,10 +62,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   temperature: {
-    fontSize: 20,
+    fontSize: 28,
+    fontWeight: 'bold',
   },
   description: {
-    fontSize: 20,
+    fontSize: 16,
     justifyContent: 'center',
   },
 });

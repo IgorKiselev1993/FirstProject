@@ -10,7 +10,6 @@ export const getPositionGPS = async (): Promise<{
       position => {
         const {latitude, longitude} = position.coords;
         resolve({latitude, longitude});
-        console.log(latitude, longitude);
       },
       error => {
         console.log(Locales.error.geolocationErr, error.message);
